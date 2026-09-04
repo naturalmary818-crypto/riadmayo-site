@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riad Mayo & Bungalows — Ourika Valley, Morocco</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=4">
+  <style>
+    /* ── HOME HERO ── */
+    .hero { height: 100vh; min-height: 640px; position: relative; overflow: hidden; }
+    .hero-img { position: absolute; inset: 0; }
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to top,  rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.18) 38%, transparent 58%),
+        linear-gradient(to right, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.10) 42%, transparent 68%),
+        linear-gradient(160deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.0) 55%, rgba(0,0,0,0.30) 100%);
+    }
+    .hero-content { position: absolute; bottom: 11%; left: 6%; color: white; text-shadow: 0 1px 12px rgba(0,0,0,0.35); }
+    .hero-loc { font-size: 0.7rem; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 700; color: white; opacity: 1; margin-bottom: 1.4rem; text-shadow: 0 1px 8px rgba(0,0,0,0.7), 0 0 24px rgba(0,0,0,0.5); }
+    .hero-title { margin-bottom: 2.4rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-scroll {
+      position: absolute; bottom: 3.5rem; right: 4rem;
+      display: flex; align-items: center; gap: 1rem;
+      color: rgba(255,255,255,0.7); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    }
+    .scroll-line { width: 48px; height: 1px; background: rgba(255,255,255,0.5); }
+
+    /* ── LANGUAGE SELECTOR ── */
+    .lang-selector { position: relative; }
+    .lang-btn {
+      background: none; border: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; font-size: 0.68rem;
+      letter-spacing: 0.2em; text-transform: uppercase; color: inherit;
+      display: flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0;
+    }
+    .lang-arrow { font-size: 0.6rem; transition: transform 0.2s ease; display: inline-block; }
+    .lang-selector.open .lang-arrow { transform: rotate(180deg); }
+    .lang-dropdown {
+      position: absolute; top: calc(100% + 1rem); right: 0;
+      background: white; min-width: 140px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      opacity: 0; visibility: hidden; transform: translateY(-6px);
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+      z-index: 200;
+    }
+    .lang-selector.open .lang-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+    .lang-dropdown button {
+      display: block; width: 100%; text-align: left;
+      padding: 0.75rem 1.2rem; background: none; border: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; font-size: 0.78rem; color: #3a3530;
+      letter-spacing: 0.06em; transition: background 0.15s, color 0.15s;
+    }
+    .lang-dropdown button:hover { background: #f8f4ef; color: #c4956a; }
+    .lang-dropdown button.active-lang { color: #c4956a; font-weight: 500; }
+    #nav:not(.scrolled) .lang-btn { color: white; }
+
+    /* ── INTRO ── */
+    .intro { padding: 8rem 6%; background: #f8f4ef; }
+    .intro-inner { max-width: 1200px; margin: 0 auto; }
+    .intro-header { text-align: center; margin-bottom: 3rem; }
+    .intro-header h2 { margin-bottom: 0; }
+    .intro-split { display: flex; gap: 4rem; align-items: flex-start; }
+    .intro-text { flex: 1; min-width: 0; }
+    .intro-text > p { margin-bottom: 1.4rem; }
+    .intro-video { flex: 1; min-width: 0; }
+    .intro-stats { margin-top: 3.5rem; text-align: center; }
+    .stats {
+      display: flex;
+      border-top: 1px solid rgba(0,0,0,0.08); border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 2.8rem 0;
+    }
+    .stat {
+      flex: 1;
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+      text-align: center;
+      padding: 0 1.5rem;
+      border-right: 1px solid rgba(0,0,0,0.08);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 300; color: #c4956a; line-height: 1; margin-bottom: 0.85rem;
+    }
+    .stat-lbl { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: #9a9590; }
+    .stat-sub { margin-top: 0.25rem; opacity: 0.7; }
+    .stats-note { margin-top: 1.6rem; font-family: 'Cormorant Garamond', serif; font-size: 0.92rem; font-style: italic; color: #9a9590; letter-spacing: 0.04em; }
+
+    /* ── DISCOVER CARDS ── */
+    .discover { padding: 7rem 6%; background: #eee9e0; }
+    .discover-head { margin-bottom: 4rem; }
+    .discover-head h2 { margin-bottom: 0.8rem; }
+    .discover-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .d-card { background: white; overflow: hidden; }
+    .d-card-img { aspect-ratio: 3/2; overflow: hidden; }
+    .d-card-img img { transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .d-card:hover .d-card-img img { transform: scale(1.05); }
+    .d-card-body { padding: 2rem 2.2rem; display: flex; flex-direction: column; gap: 0.4rem; }
+    .d-card-body h3 { margin-bottom: 0.2rem; }
+    .d-card-body p { font-size: 0.88rem; }
+    .d-card-body a { align-self: flex-start; margin-top: 0.8rem; }
+    .d-sketch-placeholder { width: 100%; max-width: 420px; margin: 1rem auto 0; aspect-ratio: 3/1; display: flex; align-items: center; justify-content: center; border: 1px dashed rgba(196,149,106,0.3); }
+    .d-sketch-placeholder span { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: #c4956a; opacity: 0.55; }
+
+    /* ── PREVIEW STRIP ── */
+    .preview-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+    .preview-tile { position: relative; overflow: hidden; aspect-ratio: 4/3; }
+    .preview-tile img { transition: transform 0.7s ease; }
+    .preview-tile:hover img { transform: scale(1.06); }
+    .preview-tile-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 3rem 1.8rem 1.5rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+      color: white;
+    }
+    .preview-tile-label h3 { font-size: 1.6rem; margin-bottom: 0.2rem; }
+    .preview-tile-label p { font-size: 0.75rem; color: rgba(255,255,255,0.75); letter-spacing: 0.1em; text-transform: uppercase; }
+
+    @media (max-width: 850px) {
+      /* INTRO SPLIT → stack on tablet and below */
+      .intro { padding: 3.5rem 5%; }
+      .intro-split { flex-direction: column; gap: 2.5rem; }
+      .intro-text > p { margin-bottom: 1.2rem; }
+    }
+
+    @media (max-width: 640px) {
+      /* HERO */
+      .hero-content { left: 5%; right: 5%; bottom: 9%; }
+      .hero-actions { flex-direction: column; gap: 0.7rem; }
+      .hero-actions a { width: 100%; text-align: center; box-sizing: border-box; }
+      .hero-scroll { display: none; }
+
+      /* STATS */
+      .stats { flex-wrap: wrap; padding: 1.8rem 0; }
+      .stat { flex: 0 0 50%; padding: 1.2rem 1rem; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.08); }
+      .stat:nth-child(odd) { border-right: 1px solid rgba(0,0,0,0.08); }
+      .stat:nth-last-child(-n+2) { border-bottom: none; }
+
+      /* DISCOVER CARDS */
+      .discover { padding: 3.5rem 5%; }
+      .discover-grid { grid-template-columns: 1fr; }
+      .d-card-img { aspect-ratio: 4/3; }
+      .d-card-body { padding: 1.5rem 1.4rem; }
+
+      /* PREVIEW STRIP */
+      .preview-strip { grid-template-columns: 1fr; }
+      .preview-tile { aspect-ratio: 3/2; }
+    }
+  </style>
+  <style>.goog-te-banner-frame{display:none!important;}body{top:0!important;}.goog-te-gadget-icon,.goog-logo-link{display:none!important;}</style>
+  <script>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'ms,fr,de,es,ja',autoDisplay:false},'google_translate_element');}</script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="nav-logo"><a href="index.html"><img src="https://iwzpn3cjaz6ya.ok.kimi.link/logo-transparent.png" alt="Riad Mayo"></a></div>
+    <div class="nav-links">
+      <a href="index.html" class="active">The Estate</a>
+      <a href="rooms.html">The Riad</a>
+      <a href="bungalows.html">The Bungalows</a>
+      <div class="nav-item-dropdown">
+        <a href="dining.html">Dining</a>
+        <div class="nav-submenu">
+          <a href="dining-options.html">Dining Options</a>
+        </div>
+      </div>
+      <div class="nav-events-dropdown">
+        <a href="events.html">Events</a>
+        <div class="nav-events-submenu">
+          <a href="weddings.html">Weddings</a>
+          <a href="celebrations.html">Celebrations</a>
+          <a href="retreats.html">Retreats</a>
+        </div>
+      </div>
+      <a href="services.html">Services</a>
+      <a href="about.html">Our Story</a>
+    </div>
+    <div class="lang-selector" id="langSelector">
+      <button class="lang-btn" id="langBtn">
+        <span id="currentLang">EN</span> <span class="lang-arrow">▾</span>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <button onclick="setLanguage('en','EN')">English</button>
+        <button onclick="setLanguage('ms','MS')">Bahasa Malaysia</button>
+        <button onclick="setLanguage('fr','FR')">Français</button>
+        <button onclick="setLanguage('de','DE')">Deutsch</button>
+        <button onclick="setLanguage('es','ES')">Español</button>
+        <button onclick="setLanguage('ja','JA')">日本語</button>
+      </div>
+    </div>
+    <a href="contact.html" class="nav-cta">Enquire</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="nav-mobile" id="navMobile">
+    <a href="index.html" class="active">The Estate</a>
+    <a href="rooms.html">The Riad</a>
+    <a href="bungalows.html">The Bungalows</a>
+    <div class="nav-mobile-dining-wrap"><a href="dining.html">Dining</a><button class="nav-mobile-sub-toggle" aria-expanded="false">&#9662;</button></div>
+    <div class="nav-mobile-submenu"><a href="dining-options.html" class="nav-mobile-sub">Dining Options</a></div>
+    <div class="nav-mobile-events-wrap"><a href="events.html">Events</a><button class="nav-mobile-events-toggle" aria-expanded="false">&#9662;</button></div>
+    <div class="nav-mobile-events-submenu"><a href="weddings.html" class="nav-mobile-sub">Weddings</a><a href="celebrations.html" class="nav-mobile-sub">Celebrations</a><a href="retreats.html" class="nav-mobile-sub">Retreats</a></div>
+    <a href="services.html">Services</a>
+    <a href="about.html">Our Story</a>
+    <a href="contact.html" class="nav-mobile-enquire">Enquire</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-img"><img src="/riad-main-picture.png" alt="Riad Mayo & Bungalows"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-loc">Ourika Valley &nbsp;·&nbsp; Morocco &nbsp;·&nbsp; 45 min from Marrakesh</p>
+      <h1 class="hero-title">Riad Mayo<br>&amp; Bungalows</h1>
+      <div class="hero-actions">
+        <a href="index.html" class="btn-ghost">Explore the Estate</a>
+        <a href="mailto:hello@riadmayo.com" class="btn-solid">Inquire Now</a>
+      </div>
+    </div>
+    <div class="hero-scroll"><div class="scroll-line"></div>Scroll to explore</div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <div class="intro-inner">
+      <!-- Heading: centered above both columns -->
+      <div class="intro-header">
+        <span class="section-label">A Privatised Retreat</span>
+        <h2>A 5-Hectare Estate — Privatised, Secured, and <strong><em>Yours.</em></strong></h2>
+      </div>
+      <!-- Two columns: paragraphs left, video right — both top-aligned -->
+      <div class="intro-split">
+        <div class="intro-text">
+          <p>Riad Mayo &amp; Bungalows is more than a uniquely private retreat — it is a family home with a story spanning generations. Rooted in the estate since the <strong><em>1930s</em></strong>, it was long a place of family life, gatherings, and memories before opening its doors to guests in <strong><em>2018</em></strong> under the care of <strong><em>Naima Imouyarh</em></strong>.</p>
+          <p>Today, our boutique <strong><em>maison d'hôte</em></strong> offers a fully privatized experience, welcoming <strong><em>one group at a time</em></strong> into a place that has never lost the warmth and intimacy of a private home. Whether for families, friends, retreats, weddings, or special celebrations, each stay is designed to feel less like visiting a hotel and more like being welcomed into a home with history.</p>
+        </div>
+        <div class="intro-video">
+          <div style="position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:10px;box-shadow:0 4px 28px rgba(0,0,0,0.12);">
+            <video autoplay loop muted playsinline
+                   style="position:absolute;width:56.25%;left:21.875%;top:50%;
+                          transform:translateY(-50%) rotate(-90deg);transform-origin:center center;">
+              <source src="/drone-estate.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <!-- Stats: full width, centered below both columns -->
+      <div class="intro-stats">
+        <div class="stats">
+          <div class="stat"><div class="stat-num">1</div><div class="stat-lbl">Historic Riad</div><div class="stat-lbl stat-sub">4 Bedrooms</div></div>
+          <div class="stat"><div class="stat-num">5</div><div class="stat-lbl">Hectares</div><div class="stat-lbl stat-sub">Private Olive Grove</div><div class="stat-lbl stat-sub"><em>50,000m²</em></div></div>
+          <div class="stat"><div class="stat-num">4</div><div class="stat-lbl">Private Bungalows</div><div class="stat-lbl stat-sub">34 m² Each</div></div>
+          <div class="stat"><div class="stat-num">45</div><div class="stat-lbl">Minutes from the heart of Marrakesh</div></div>
+        </div>
+        <p class="stats-note">Exclusively reserved for one group at a time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCOVER THE ESTATE -->
+  <section class="discover">
+    <div class="discover-head">
+      <span class="section-label">The Estate</span>
+      <h2>Discover Riad Mayo</h2>
+      <p>From the grandeur of the Riad House to the seclusion of four private bungalows — every corner of the estate invites total immersion.</p>
+    </div>
+    <div class="discover-grid">
+      <div class="d-card">
+        <div class="d-card-img"><img src="https://iwzpn3cjaz6ya.ok.kimi.link/DSCF3346.jpg" alt="The Riad House"></div>
+        <div class="d-card-body">
+          <h3>The Riad House</h3>
+          <p>A <strong><em>historic Moroccan residence</em></strong> dating to the <strong><em>1930s</em></strong>, authentically preserved and generously proportioned. The Riad features <strong><em>4 ensuite bedrooms</em></strong>, two rooftop terraces with sweeping <strong><em>360° views</em></strong>, and a collection of traditional communal spaces — accommodating <strong><em>12–15 guests</em></strong> across approximately <strong><em>600 m²</em></strong>.</p>
+          <img src="/riad-house-sketch.png" alt="Riad House Sketch" style="display:block; width:90%; max-width:320px; margin:1.2rem auto 0; filter:invert(1); mix-blend-mode:multiply;">
+          <a href="rooms.html" class="btn-outline-terracotta">Explore the Riad</a>
+        </div>
+      </div>
+      <div class="d-card">
+        <div class="d-card-img"><img src="https://iwzpn3cjaz6ya.ok.kimi.link/bungalow-exterior.png" alt="The Bungalows"></div>
+        <div class="d-card-body">
+          <h3>The Bungalows</h3>
+          <p><strong><em>Four private ensuite bungalows</em></strong> set within lush greenery. Each <strong><em>34 m²</em></strong> retreat sleeps up to <strong><em>3 guests</em></strong> and features a <strong><em>rooftop terrace</em></strong> and <strong><em>chimney</em></strong> — secluded, self-contained, and serene.</p>
+          <img src="/bungalow-sketch.webp" alt="Bungalow Sketch" style="display:block; width:100%; max-width:420px; margin:1rem auto 0; filter:invert(1); mix-blend-mode:multiply;">
+        </div>
+      </div>
+      <div class="d-card">
+        <div class="d-card-img"><img src="/gardens-main-picture.png" alt="The Gardens"></div>
+        <div class="d-card-body">
+          <h3>The Gardens</h3>
+          <p>Embraced by a <strong><em>centuries-old olive grove</em></strong>, the estate's <strong><em>5 hectares</em></strong> unfold into distinct spaces for <strong><em>gathering</em></strong>, <strong><em>unwinding</em></strong>, and immersing in the natural beauty of the <strong><em>Ourika Valley</em></strong>.</p>
+          <img src="/gardens-sketch-v5.png" alt="Gardens Sketch" style="display:block; width:100%; max-width:420px; margin:1rem auto 0; mix-blend-mode:multiply;">
+        </div>
+      </div>
+      <div class="d-card">
+        <div class="d-card-img"><img src="/pool-photo.png" alt="The Pool" style="object-fit:cover;object-position:center;"></div>
+        <div class="d-card-body">
+          <h3>The Pool</h3>
+          <p>Reached through a <strong><em>connecting patio from the Riad</em></strong>, the estate pool stretches <strong><em>15m × 7m</em></strong> beneath open sky and swaying palms — divided into a children's area and a deeper adult pool, lined with <em>cabanas</em>, <em>sun loungers</em>, and shaded retreats.</p>
+          <img src="/pool-sketch.png" alt="Pool Sketch" style="display:block; width:100%; max-width:420px; margin:1rem auto 0; mix-blend-mode:multiply;">
+        </div>
+      </div>
+      <div class="d-card">
+        <div class="d-card-img"><img src="/bird-sanctuary.png" alt="The Bird Sanctuary"></div>
+        <div class="d-card-body">
+          <h3>The Bird Sanctuary</h3>
+          <p>Tucked within the gardens, the estate's bird sanctuary is home to <strong><em>peacocks</em></strong> and an assortment of resident birds — a small, much-loved part of daily life at Riad Mayo.</p>
+          <img src="/bird-sanctuary-sketch.png" alt="Bird Sanctuary sketch" style="width:100%;max-width:420px;display:block;margin:1rem auto 0;mix-blend-mode:multiply;">
+        </div>
+      </div>
+      <div class="d-card">
+        <div class="d-card-img"><img src="/activities-court.jpg" alt="Activities" style="object-fit:cover;object-position:center;"></div>
+        <div class="d-card-body">
+          <h3>Activities</h3>
+          <p>Throughout the estate, dedicated spaces invite guests to play, gather and spend time outdoors — from <strong><em>padel</em></strong> and <strong><em>basketball</em></strong> to <em>table tennis</em>, <em>pool table</em>, and relaxed garden activities.</p>
+          <img src="/activities-sketch.png" alt="Activities sketch" style="width:100%;max-width:420px;display:block;margin:1rem auto 0;mix-blend-mode:multiply;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREVIEW TILES -->
+  <div class="preview-strip">
+    <a href="rooms.html" class="preview-tile">
+      <img src="spaces/s-reception-1.png" alt="The Riad">
+      <div class="preview-tile-label">
+        <h3>The Riad</h3>
+        <p>Four distinct bedrooms</p>
+      </div>
+    </a>
+    <a href="dining.html" class="preview-tile">
+      <img src="https://iwzpn3cjaz6ya.ok.kimi.link/garden-pergola-dinner.jpg" alt="Dining">
+      <div class="preview-tile-label">
+        <h3>Dining</h3>
+        <p>Authentic Moroccan cuisine</p>
+      </div>
+    </a>
+    <a href="events.html" class="preview-tile">
+      <img src="/events-main.jpg" alt="Events">
+      <div class="preview-tile-label">
+        <h3>Events</h3>
+        <p>Weddings &amp; celebrations</p>
+      </div>
+    </a>
+  </div>
+
+  <!-- CTA BAR -->
+  <div class="cta-bar">
+    <h3>Ready to experience Riad Mayo?</h3>
+    <a href="mailto:hello@riadmayo.com" class="btn-white">Check Availability</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="https://iwzpn3cjaz6ya.ok.kimi.link/logo.png" alt="Riad Mayo">
+        <p>A Privatized and Secured 5 Hectare Estate.<br>45 minutes from the heart of Marrakesh city.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="rooms.html">The Riad</a>
+        <a href="bungalows.html">The Bungalows</a>
+        <a href="dining.html">Dining</a>
+        <div class="nav-events-dropdown">
+        <a href="events.html">Events</a>
+        <div class="nav-events-submenu">
+          <a href="weddings.html">Weddings</a>
+          <a href="celebrations.html">Celebrations</a>
+          <a href="retreats.html">Retreats</a>
+        </div>
+      </div>
+        <a href="about.html">Our Story</a>
+      </div>
+      <div class="footer-col">
+        <h4>Information</h4>
+        <a href="index.html">Amenities</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">Initiatives</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@riadmayo.com">hello@riadmayo.com</a>
+        <a href="https://www.instagram.com/riadmayo/" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:0.45rem;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          @riadmayo
+        </a>
+        <a href="#">Sidi Abdallah Ghiat,<br>Ourika Valley, Morocco</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Riad Mayo &amp; Bungalows. All rights reserved.</span>
+      <span>Ourika Valley, Morocco</span>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 80);
+    }, { passive: true });
+
+    // Language selector
+    const langSelector = document.getElementById('langSelector');
+    document.getElementById('langBtn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      langSelector.classList.toggle('open');
+    });
+    document.addEventListener('click', function() {
+      langSelector.classList.remove('open');
+    });
+
+    function setLanguage(code, label) {
+      document.getElementById('currentLang').textContent = label;
+      document.querySelectorAll('#langDropdown button').forEach(function(b){ b.classList.remove('active-lang'); });
+      if (event && event.target) event.target.classList.add('active-lang');
+      var sel = document.getElementById('langSelector');
+      if (sel) sel.classList.remove('open');
+      if (code === 'en') {
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + location.hostname;
+      } else {
+        var v = '/en/' + code;
+        document.cookie = 'googtrans=' + v + '; path=/';
+        document.cookie = 'googtrans=' + v + '; path=/; domain=.' + location.hostname;
+      }
+      location.reload();
+    }
+  </script>
+  <script>
+  (function(){
+    var btn = document.getElementById('navHamburger');
+    var menu = document.getElementById('navMobile');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function(){
+      btn.classList.toggle('open');
+      menu.classList.toggle('open');
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        btn.classList.remove('open');
+        menu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  })();
+  </script>
+  <script>
+  (function() {
+    var dropdown    = document.querySelector('.nav-item-dropdown');
+    var submenu     = document.querySelector('.nav-submenu');
+    var mobileToggle  = document.querySelector('.nav-mobile-sub-toggle');
+    var mobileSubmenu = document.querySelector('.nav-mobile-submenu');
+
+    if (submenu)       submenu.style.display     = 'none';
+    if (mobileSubmenu) mobileSubmenu.style.display = 'none';
+
+    if (dropdown && submenu) {
+      dropdown.addEventListener('mouseenter', function() { submenu.style.display = 'block'; });
+      dropdown.addEventListener('mouseleave', function() { submenu.style.display = 'none'; });
+    }
+
+    if (mobileToggle && mobileSubmenu) {
+      mobileToggle.addEventListener('click', function() {
+        var isOpen = mobileSubmenu.style.display === 'block';
+        if (isOpen) {
+          mobileSubmenu.style.display = 'none';
+          this.innerHTML = '&#9662;';
+          this.setAttribute('aria-expanded', 'false');
+        } else {
+          mobileSubmenu.style.display = 'block';
+          this.innerHTML = '&#9652;';
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+    }
+  })();
+  </script>
+<script>
+(function() {
+  // Force-hide all events submenus on load — overrides any cached CSS
+  document.querySelectorAll('.nav-events-submenu').forEach(function(el) {
+    el.style.display = 'none';
+  });
+  // Desktop hover
+  var eventsDropdown = document.querySelector('.nav-links .nav-events-dropdown');
+  var eventsSubmenu  = document.querySelector('.nav-links .nav-events-submenu');
+  if (eventsDropdown && eventsSubmenu) {
+    eventsDropdown.addEventListener('mouseenter', function() {
+      eventsSubmenu.style.display = 'block';
+    });
+    eventsDropdown.addEventListener('mouseleave', function() {
+      eventsSubmenu.style.display = 'none';
+    });
+  }
+  // Mobile accordion
+  var mobileEventsToggle  = document.querySelector('.nav-mobile-events-toggle');
+  var mobileEventsSubmenu = document.querySelector('.nav-mobile-events-submenu');
+  if (mobileEventsToggle && mobileEventsSubmenu) {
+    mobileEventsToggle.addEventListener('click', function() {
+      var isOpen = mobileEventsSubmenu.style.display === 'block';
+      if (isOpen) {
+        mobileEventsSubmenu.style.display = 'none';
+        this.innerHTML = '&#9662;';
+        this.setAttribute('aria-expanded', 'false');
+      } else {
+        mobileEventsSubmenu.style.display = 'block';
+        this.innerHTML = '&#9652;';
+        this.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+  // bfcache fix: force-close all dropdowns when page is restored from cache
+  window.addEventListener('pageshow', function() {
+    document.querySelectorAll('.nav-submenu, .nav-events-submenu').forEach(function(el) {
+      el.style.display = 'none';
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weddings — Riad Mayo & Bungalows</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=4">
+  <style>
+    /* ── INTRO ── */
+    .wed-intro { padding: 6rem 6%; background: #f8f4ef; }
+    .wed-intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: start; }
+    .wed-intro-text h2 { margin-bottom: 1.5rem; }
+    .wed-intro-text p { margin-bottom: 1.2rem; }
+    .wed-intro-img { aspect-ratio: 4/5; overflow: hidden; border-radius: 6px; }
+    .wed-intro-img img { width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; }
+
+    /* ── DETAIL SECTIONS ── */
+    .wed-section { padding: 6rem 6%; }
+    .wed-section.bg-warm { background: #eee9e0; }
+    .wed-section.bg-cream { background: #f8f4ef; }
+    .wed-section.bg-dark { background: #1c1c1a; }
+    .wed-grid { display: grid; grid-template-columns: 1fr 1.7fr; gap: 6rem; align-items: start; }
+    .wed-label-col h2 { margin-top: 0.4rem; }
+
+    /* Dark overrides */
+    .bg-dark .section-label { color: #c4956a; }
+    .bg-dark .divider { background: #c4956a; }
+    .bg-dark h2, .bg-dark h3 { color: white; }
+    .bg-dark p { color: rgba(255,255,255,0.6); }
+
+    /* ── FEATURE LIST ── */
+    .wed-list { list-style: none; padding: 0; margin: 1.5rem 0 0; }
+    .wed-list li {
+      font-size: 0.9rem; color: #5a5652;
+      padding: 0.6rem 0 0.6rem 1.2rem;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      position: relative;
+    }
+    .wed-list li:first-child { border-top: 1px solid rgba(0,0,0,0.06); }
+    .wed-list li::before { content: '—'; position: absolute; left: 0; color: #c4956a; font-size: 0.7rem; top: 0.72rem; }
+    .bg-dark .wed-list li { color: rgba(255,255,255,0.55); border-bottom-color: rgba(255,255,255,0.08); }
+    .bg-dark .wed-list li:first-child { border-top-color: rgba(255,255,255,0.08); }
+
+    /* ── IMAGE PAIR ── */
+    .wed-img-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 2rem; }
+    .wed-img-pair > div { aspect-ratio: 3/4; overflow: hidden; }
+
+    /* ── GALLERY STRIP ── */
+    .wed-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+    .wed-gallery > div { aspect-ratio: 4/3; overflow: hidden; }
+    .wed-gallery > div img, .wed-img-pair > div img { transition: transform 0.8s ease; }
+    .wed-gallery > div:hover img, .wed-img-pair > div:hover img { transform: scale(1.04); }
+
+    /* ── CTA ── */
+    .wed-cta { background: #1c1c1a; padding: 7rem 6%; text-align: center; }
+    .wed-cta .section-label { color: #c4956a; }
+    .wed-cta .divider { background: #c4956a; margin: 1rem auto 2.5rem; }
+    .wed-cta h2 { color: white; margin-bottom: 1.5rem; }
+    .wed-cta p { color: rgba(255,255,255,0.55); max-width: 500px; margin: 0 auto 3rem; font-size: 0.95rem; line-height: 1.9; }
+    .btn-dark {
+      display: inline-block; padding: 0.9rem 2.4rem;
+      border: 1px solid rgba(255,255,255,0.5); color: white;
+      font-size: 0.73rem; letter-spacing: 0.15em; text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    .btn-dark:hover { background: white; color: #1c1c1a; }
+
+    /* ── BACK LINK ── */
+    .wed-back { padding: 2rem 6%; background: #f8f4ef; }
+    .wed-back a {
+      font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: #9a9590; border-bottom: 1px solid rgba(154,149,144,0.4); padding-bottom: 0.15rem;
+      transition: color 0.2s;
+    }
+    .wed-back a:hover { color: #1c1c1a; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .wed-intro-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .wed-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .wed-img-pair { grid-template-columns: 1fr; }
+      .wed-gallery { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .wed-intro { padding: 3.5rem 5%; }
+      .wed-section { padding: 3.5rem 5%; }
+      .wed-cta { padding: 4rem 5%; }
+      .wed-back { padding: 1.5rem 5%; }
+      .wed-gallery { grid-template-columns: 1fr; }
+    }
+  </style>
+  <style>.goog-te-banner-frame{display:none!important;}body{top:0!important;}.goog-te-gadget-icon,.goog-logo-link{display:none!important;}</style>
+  <script>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'ms,fr,de,es,ja',autoDisplay:false},'google_translate_element');}</script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body>
+
+  <div id="google_translate_element" style="display:none;visibility:hidden;height:0;overflow:hidden;position:absolute;"></div>
+
+  <!-- NAV -->
+  <nav class="solid">
+    <div class="nav-logo"><a href="index.html"><img src="https://iwzpn3cjaz6ya.ok.kimi.link/logo-transparent.png" alt="Riad Mayo"></a></div>
+    <div class="nav-links">
+      <a href="index.html">The Estate</a>
+      <a href="rooms.html">The Riad</a>
+      <a href="bungalows.html">The Bungalows</a>
+      <div class="nav-item-dropdown">
+        <a href="dining.html">Dining</a>
+        <div class="nav-submenu">
+          <a href="dining-options.html">Dining Options</a>
+        </div>
+      </div>
+      <div class="nav-events-dropdown">
+        <a href="events.html" class="active">Events</a>
+        <div class="nav-events-submenu">
+          <a href="weddings.html">Weddings</a>
+          <a href="celebrations.html">Celebrations</a>
+          <a href="retreats.html">Retreats</a>
+        </div>
+      </div>
+      <a href="services.html">Services</a>
+      <a href="about.html">Our Story</a>
+    </div>
+    <div class="lang-selector" id="langSelector">
+      <button class="lang-btn" id="langBtn">
+        <span id="currentLang">EN</span> <span class="lang-arrow">▾</span>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <button onclick="setLanguage('en','EN')">English</button>
+        <button onclick="setLanguage('ms','MS')">Bahasa Malaysia</button>
+        <button onclick="setLanguage('fr','FR')">Français</button>
+        <button onclick="setLanguage('de','DE')">Deutsch</button>
+        <button onclick="setLanguage('es','ES')">Español</button>
+        <button onclick="setLanguage('ja','JA')">日本語</button>
+      </div>
+    </div>
+    <a href="contact.html" class="nav-cta">Enquire</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="nav-mobile" id="navMobile">
+    <a href="index.html">The Estate</a>
+    <a href="rooms.html">The Riad</a>
+    <a href="bungalows.html">The Bungalows</a>
+    <div class="nav-mobile-dining-wrap"><a href="dining.html">Dining</a><button class="nav-mobile-sub-toggle" aria-expanded="false">&#9662;</button></div>
+    <div class="nav-mobile-submenu"><a href="dining-options.html" class="nav-mobile-sub">Dining Options</a></div>
+    <div class="nav-mobile-events-wrap"><a href="events.html" class="active">Events</a><button class="nav-mobile-events-toggle" aria-expanded="false">&#9662;</button></div>
+    <div class="nav-mobile-events-submenu"><a href="weddings.html" class="nav-mobile-sub">Weddings</a><a href="celebrations.html" class="nav-mobile-sub">Celebrations</a><a href="retreats.html" class="nav-mobile-sub">Retreats</a></div>
+    <a href="services.html">Services</a>
+    <a href="about.html">Our Story</a>
+    <a href="contact.html" class="nav-mobile-enquire">Enquire</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <img src="/weddings-card.jpg" alt="Weddings at Riad Mayo">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <span class="section-label">Private Weddings</span>
+      <h1>Weddings</h1>
+    </div>
+  </div>
+
+  <!-- BACK -->
+  <div class="wed-back">
+    <a href="events.html">← All Events</a>
+  </div>
+
+  <!-- INTRO -->
+  <section class="wed-intro">
+    <div class="wed-intro-grid">
+      <div class="wed-intro-text">
+        <span class="section-label">The Wedding at Riad Mayo</span>
+        <div class="divider"></div>
+        <h2>A Setting Made<br><em>for the <strong>Occasion</strong></em></h2>
+        <p>Riad Mayo offers an entirely private estate for your wedding — a 5-hectare property set among olive groves and gardens in the Ourika Valley, 45 minutes from Marrakesh. The house, riad courtyard, gardens, pool terraces and outdoor spaces are yours exclusively for the duration of your stay.</p>
+        <p>Whether you envision a candlelit Moroccan ceremony beneath the olive trees, a grand reception around the pool, or an intimate gathering of your closest people, every element of your wedding can be shaped around you.</p>
+        <p>Our team works alongside you from the earliest stages of planning through to the last dance, coordinating every detail so the day unfolds exactly as you imagined.</p>
+        <a href="mailto:hello@riadmayo.com" class="btn-outline" style="margin-top:0.5rem;">Begin Planning</a>
+      </div>
+      <div>
+        <div class="wed-intro-img">
+          <img src="/wedding-ceremony.jpg" alt="Wedding ceremony under olive trees at Riad Mayo">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CEREMONY & RECEPTION -->
+  <section class="wed-section bg-warm">
+    <div class="wed-grid">
+      <div class="wed-label-col">
+        <span class="section-label">The Day</span>
+        <div class="divider"></div>
+        <h2>Ceremony &amp;<br>Reception</h2>
+      </div>
+      <div>
+        <p>The estate offers multiple outdoor ceremony settings — beneath the ancient olive trees, along the garden terraces, or beside the pool at golden hour. Indoor spaces within the riad provide an intimate alternative for smaller ceremonies.</p>
+        <p>Receptions can be arranged across the estate's outdoor grounds, with long candlelit tables, lanterns strung through the gardens, and the Atlas Mountains as backdrop.</p>
+        <ul class="wed-list">
+          <li>Outdoor ceremony in the olive grove or gardens</li>
+          <li>Pool terrace receptions for up to 100 day guests</li>
+          <li>Riad courtyard intimate ceremonies</li>
+          <li>Candlelit garden reception tables</li>
+          <li>Full venue dressing &amp; layout coordination</li>
+          <li>On-site coordination throughout the day</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATERING -->
+  <section class="wed-section bg-cream">
+    <div class="wed-grid">
+      <div class="wed-label-col">
+        <span class="section-label">At the Table</span>
+        <div class="divider"></div>
+        <h2>Catering by<br>Chef Rabia</h2>
+      </div>
+      <div>
+        <p>All dining is prepared by Chef Rabia and her team, whose cuisine draws from the deep traditions of Moroccan cooking — slow-cooked tagines, wood-fired breads, fragrant couscous and elaborate mezze — alongside Italian and Asian-inspired dishes.</p>
+        <p>Wedding menus are composed entirely around your group. Whether you prefer a formal seated dinner, a festive shared feast, or a cocktail reception followed by a late-night banquet, every aspect of the dining experience can be tailored.</p>
+        <ul class="wed-list">
+          <li>Bespoke wedding menus designed with Chef Rabia</li>
+          <li>Traditional Moroccan feasts &amp; sharing tables</li>
+          <li>Formal plated dinners for seated receptions</li>
+          <li>Cocktail hours &amp; canapé service</li>
+          <li>Wedding cake coordination</li>
+          <li>Late-night snacks &amp; post-celebration dining</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLORALS & DÉCOR -->
+  <section class="wed-section bg-warm">
+    <div class="wed-grid">
+      <div class="wed-label-col">
+        <span class="section-label">Atmosphere</span>
+        <div class="divider"></div>
+        <h2>Florals, Décor<br>&amp; Lighting</h2>
+      </div>
+      <div>
+        <p>The natural beauty of the estate — jasmine-scented gardens, ancient olive trees, terracotta walls and tiled courtyards — forms the foundation of your wedding aesthetic. Our team can assist in coordinating décor, florals and lighting to complement the setting.</p>
+        <ul class="wed-list">
+          <li>Floral coordination with local Moroccan florists</li>
+          <li>Lantern, candle &amp; ambient lighting arrangements</li>
+          <li>Table styling, linen &amp; tableware</li>
+          <li>Ceremony arch &amp; aisle dressing</li>
+          <li>Outdoor lighting throughout the estate</li>
+          <li>Welcome arrangements &amp; guest suite florals</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTERTAINMENT -->
+  <section class="wed-section bg-dark">
+    <div class="wed-grid">
+      <div class="wed-label-col">
+        <span class="section-label">The Evening</span>
+        <div class="divider"></div>
+        <h2>Music &amp;<br>Entertainment</h2>
+      </div>
+      <div>
+        <p>Evenings at Riad Mayo take on a rhythm of their own. From traditional Moroccan folk musicians and Gnawa performers to contemporary DJs and acoustic sets, the entertainment can be shaped entirely around the atmosphere you want to create.</p>
+        <ul class="wed-list">
+          <li>Authentic Moroccan folk bands &amp; Gnawa musicians</li>
+          <li>Belly dancers &amp; traditional performers</li>
+          <li>Fire performances for evening receptions</li>
+          <li>DJ services for late-night celebrations</li>
+          <li>Acoustic musicians for ceremony &amp; dinner</li>
+          <li>Sound system &amp; lighting coordination</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCOMMODATION -->
+  <section class="wed-section bg-cream">
+    <div class="wed-grid">
+      <div class="wed-label-col">
+        <span class="section-label">Staying On</span>
+        <div class="divider"></div>
+        <h2>Accommodation<br>for Your Party</h2>
+      </div>
+      <div>
+        <p>The estate accommodates up to 30 overnight guests across 8 bedrooms in the main riad and 4 private bungalows. Your group stays together, with the full estate reserved exclusively for your wedding party for the duration of your stay.</p>
+        <p>A minimum of 3 nights applies for all wedding bookings. Most couples choose to arrive the day before the ceremony, allowing time to settle in, rehearse and enjoy the estate at their own pace.</p>
+        <ul class="wed-list">
+          <li>Up to 30 overnight guests across 8 rooms &amp; 4 bungalows</li>
+          <li>Full exclusive use of the estate</li>
+          <li>Welcome hampers &amp; suite preparation</li>
+          <li>Breakfast included each morning</li>
+          <li>Minimum 3-night stay for wedding bookings</li>
+          <li>Airport transfers available for all guests</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="wed-cta">
+    <span class="section-label">Begin the Conversation</span>
+    <div class="divider"></div>
+    <h2>Plan Your Wedding<br><em>at Riad Mayo</em></h2>
+    <p>We'd love to hear about your plans. Get in touch and our team will be in touch within 24 hours to begin the conversation.</p>
+    <a href="mailto:hello@riadmayo.com" class="btn-dark">hello@riadmayo.com</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="https://iwzpn3cjaz6ya.ok.kimi.link/logo.png" alt="Riad Mayo">
+        <p>A Privatized and Secured 5 Hectare Estate.<br>45 minutes from the heart of Marrakesh city.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="rooms.html">The Riad</a>
+        <a href="bungalows.html">The Bungalows</a>
+        <a href="dining.html">Dining</a>
+        <a href="events.html">Events</a>
+        <a href="about.html">Our Story</a>
+      </div>
+      <div class="footer-col">
+        <h4>Information</h4>
+        <a href="index.html">Amenities</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">Initiatives</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@riadmayo.com">hello@riadmayo.com</a>
+        <a href="https://www.instagram.com/riadmayo/" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:0.45rem;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          @riadmayo
+        </a>
+        <a href="#">Sidi Abdallah Ghiat,<br>Ourika Valley, Morocco</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Riad Mayo &amp; Bungalows. All rights reserved.</span>
+      <span>Ourika Valley, Morocco</span>
+    </div>
+  </footer>
+
+  <script>
+    function setLanguage(code, label) {
+      document.getElementById('currentLang').textContent = label;
+      document.querySelectorAll('#langDropdown button').forEach(function(b){ b.classList.remove('active-lang'); });
+      if (event && event.target) event.target.classList.add('active-lang');
+      var sel = document.getElementById('langSelector');
+      if (sel) sel.classList.remove('open');
+      if (code === 'en') {
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + location.hostname;
+      } else {
+        var v = '/en/' + code;
+        document.cookie = 'googtrans=' + v + '; path=/';
+        document.cookie = 'googtrans=' + v + '; path=/; domain=.' + location.hostname;
+      }
+      location.reload();
+    }
+    document.getElementById('langBtn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.getElementById('langSelector').classList.toggle('open');
+    });
+    document.addEventListener('click', function() {
+      document.getElementById('langSelector').classList.remove('open');
+    });
+  </script>
+
+  <script>
+  (function(){
+    var btn = document.getElementById('navHamburger');
+    var menu = document.getElementById('navMobile');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function(){
+      btn.classList.toggle('open');
+      menu.classList.toggle('open');
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        btn.classList.remove('open');
+        menu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  })();
+  </script>
+
+  <script>
+  (function() {
+    var dropdown    = document.querySelector('.nav-item-dropdown');
+    var submenu     = document.querySelector('.nav-submenu');
+    var mobileToggle  = document.querySelector('.nav-mobile-sub-toggle');
+    var mobileSubmenu = document.querySelector('.nav-mobile-submenu');
+
+    if (submenu)       submenu.style.display     = 'none';
+    if (mobileSubmenu) mobileSubmenu.style.display = 'none';
+
+    if (dropdown && submenu) {
+      dropdown.addEventListener('mouseenter', function() { submenu.style.display = 'block'; });
+      dropdown.addEventListener('mouseleave', function() { submenu.style.display = 'none'; });
+    }
+
+    if (mobileToggle && mobileSubmenu) {
+      mobileToggle.addEventListener('click', function() {
+        var isOpen = mobileSubmenu.style.display === 'block';
+        if (isOpen) {
+          mobileSubmenu.style.display = 'none';
+          this.innerHTML = '&#9662;';
+          this.setAttribute('aria-expanded', 'false');
+        } else {
+          mobileSubmenu.style.display = 'block';
+          this.innerHTML = '&#9652;';
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+    }
+
+    var mobileEventsToggle  = document.querySelector('.nav-mobile-events-toggle');
+    var mobileEventsSubmenu = document.querySelector('.nav-mobile-events-submenu');
+    if (mobileEventsSubmenu) mobileEventsSubmenu.style.display = 'none';
+    if (mobileEventsToggle && mobileEventsSubmenu) {
+      mobileEventsToggle.addEventListener('click', function() {
+        var isOpen = mobileEventsSubmenu.style.display === 'block';
+        if (isOpen) {
+          mobileEventsSubmenu.style.display = 'none';
+          this.innerHTML = '&#9662;';
+          this.setAttribute('aria-expanded', 'false');
+        } else {
+          mobileEventsSubmenu.style.display = 'block';
+          this.innerHTML = '&#9652;';
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+    }
+  })();
+  </script>
+<script>
+(function() {
+  // Force-hide all events submenus on load — overrides any cached CSS
+  document.querySelectorAll('.nav-events-submenu').forEach(function(el) {
+    el.style.display = 'none';
+  });
+  // Desktop hover
+  var eventsDropdown = document.querySelector('.nav-links .nav-events-dropdown');
+  var eventsSubmenu  = document.querySelector('.nav-links .nav-events-submenu');
+  if (eventsDropdown && eventsSubmenu) {
+    eventsDropdown.addEventListener('mouseenter', function() {
+      eventsSubmenu.style.display = 'block';
+    });
+    eventsDropdown.addEventListener('mouseleave', function() {
+      eventsSubmenu.style.display = 'none';
+    });
+  }
+  // Mobile accordion
+  var mobileEventsToggle  = document.querySelector('.nav-mobile-events-toggle');
+  var mobileEventsSubmenu = document.querySelector('.nav-mobile-events-submenu');
+  if (mobileEventsToggle && mobileEventsSubmenu) {
+    mobileEventsToggle.addEventListener('click', function() {
+      var isOpen = mobileEventsSubmenu.style.display === 'block';
+      if (isOpen) {
+        mobileEventsSubmenu.style.display = 'none';
+        this.innerHTML = '&#9662;';
+        this.setAttribute('aria-expanded', 'false');
+      } else {
+        mobileEventsSubmenu.style.display = 'block';
+        this.innerHTML = '&#9652;';
+        this.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+  // bfcache fix: force-close all dropdowns when page is restored from cache
+  window.addEventListener('pageshow', function() {
+    document.querySelectorAll('.nav-submenu, .nav-events-submenu').forEach(function(el) {
+      el.style.display = 'none';
+    });
+  });
+})();
+</script>
+</body>
+</html>

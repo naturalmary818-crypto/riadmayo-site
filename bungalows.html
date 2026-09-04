@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Bungalows — Riad Mayo & Bungalows</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=4">
+  <style>
+    /* ── INTRO ── */
+    .bung-intro { padding: 7rem 6%; background: #f8f4ef; }
+    .bung-intro-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: center; }
+    .bung-intro-text h2 { margin-bottom: 1.5rem; }
+    .bung-intro-text p { margin-bottom: 1.2rem; color: #6a6660; line-height: 1.8; }
+    .bung-intro-img { aspect-ratio: 4/5; overflow: hidden; }
+    .bung-intro-img img { transition: transform 0.7s ease; }
+    .bung-intro-img:hover img { transform: scale(1.04); }
+
+    /* ── BUNGALOW FEATURE ── */
+    .bung-feature { background: #1c1c1a; }
+    .bung-feature-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 580px; }
+    .bung-feature-img { overflow: hidden; }
+    .bung-feature-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+    .bung-feature-img:hover img { transform: scale(1.04); }
+    .bung-feature-content { display: flex; align-items: center; padding: 5rem 7%; }
+    .bung-feature-content-inner h2 { color: white; margin-bottom: 1.4rem; }
+    .bung-feature-content-inner p { color: rgba(255,255,255,0.6); margin-bottom: 1.2rem; line-height: 1.8; font-size: 0.92rem; }
+    .bung-specs { margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; }
+    .bung-spec-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 0.82rem; }
+    .bung-spec-row:last-child { border-bottom: none; }
+    .bung-spec-label { color: rgba(255,255,255,0.35); letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.68rem; }
+    .bung-spec-val { color: rgba(255,255,255,0.75); }
+
+    /* ── PHOTO STRIP ── */
+    .bung-strip { display: grid; grid-template-columns: repeat(3, 1fr); height: 380px; gap: 4px; }
+    .bung-strip-cell { overflow: hidden; }
+    .bung-strip-cell img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+    .bung-strip-cell:hover img { transform: scale(1.05); }
+
+    /* ── GARDEN SECTION ── */
+    .bung-garden { padding: 7rem 6%; background: #eee9e0; }
+    .bung-garden-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: center; }
+    .bung-garden-img { aspect-ratio: 4/5; overflow: hidden; }
+    .bung-garden-img img { transition: transform 0.7s ease; }
+    .bung-garden-img:hover img { transform: scale(1.04); }
+    .bung-garden-text h2 { margin-bottom: 1.5rem; }
+    .bung-garden-text p { margin-bottom: 1.2rem; color: #6a6660; line-height: 1.8; }
+    .bung-detail-rows { margin-top: 2rem; }
+    .bung-detail-row { display: flex; justify-content: space-between; padding: 0.85rem 0; border-bottom: 1px solid rgba(0,0,0,0.08); font-size: 0.86rem; }
+    .bung-detail-row:last-child { border-bottom: none; }
+    .bung-detail-label { color: #9a9590; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.7rem; }
+
+    /* ── BEDDING NOTE ── */
+    .bung-bedding-note { margin-top: 1.6rem; font-size: 0.78rem; font-weight: 600; font-style: italic; color: rgba(255,255,255,0.45); line-height: 1.7; }
+
+    /* ── PRIVATE NOTE ── */
+    .private-note { padding: 5rem 6%; background: #111110; text-align: center; }
+    .private-note h2 { color: white; margin-bottom: 1.5rem; }
+    .private-note p { color: rgba(255,255,255,0.6); max-width: 580px; margin: 0 auto 2.5rem; }
+
+    @media (max-width: 640px) {
+      .bung-intro { padding: 2.5rem 5%; }
+      .bung-intro-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .bung-intro-img { aspect-ratio: 4/3; }
+      .bung-feature-inner { grid-template-columns: 1fr; min-height: auto; }
+      .bung-feature-img { aspect-ratio: 4/3; }
+      .bung-feature-content { padding: 2.5rem 5%; }
+      .bung-strip { grid-template-columns: 1fr; height: auto; }
+      .bung-strip-cell { height: 220px; }
+      .bung-garden { padding: 2.5rem 5%; }
+      .bung-garden-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .bung-garden-img { aspect-ratio: 4/3; }
+      .private-note { padding: 3rem 5%; }
+    }
+  </style>
+  <style>.goog-te-banner-frame{display:none!important;}body{top:0!important;}.goog-te-gadget-icon,.goog-logo-link{display:none!important;}</style>
+  <script>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'ms,fr,de,es,ja',autoDisplay:false},'google_translate_element');}</script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="solid" id="nav">
+    <div class="nav-logo"><a href="index.html"><img src="https://iwzpn3cjaz6ya.ok.kimi.link/logo-transparent.png" alt="Riad Mayo"></a></div>
+    <div class="nav-links">
+      <a href="index.html">The Estate</a>
+      <a href="rooms.html">The Riad</a>
+      <a href="bungalows.html" class="active">The Bungalows</a>
+      <div class="nav-item-dropdown">
+        <a href="dining.html">Dining</a>
+        <div class="nav-submenu">
+          <a href="dining-options.html">Dining Options</a>
+        </div>
+      </div>
+      <div class="nav-events-dropdown">
+        <a href="events.html">Events</a>
+        <div class="nav-events-submenu">
+          <a href="weddings.html">Weddings</a>
+          <a href="celebrations.html">Celebrations</a>
+          <a href="retreats.html">Retreats</a>
+        </div>
+      </div>
+      <a href="services.html">Services</a>
+      <a href="about.html">Our Story</a>
+    </div>
+    <div class="lang-selector" id="langSelector">
+      <button class="lang-btn" id="langBtn">
+        <span id="currentLang">EN</span> <span class="lang-arrow">▾</span>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <button onclick="setLanguage('en','EN')">English</button>
+        <button onclick="setLanguage('ms','MS')">Bahasa Malaysia</button>
+        <button onclick="setLanguage('fr','FR')">Français</button>
+        <button onclick="setLanguage('de','DE')">Deutsch</button>
+        <button onclick="setLanguage('es','ES')">Español</button>
+        <button onclick="setLanguage('ja','JA')">日本語</button>
+      </div>
+    </div>
+    <a href="contact.html" class="nav-cta">Enquire</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="nav-mobile" id="navMobile">
+    <a href="index.html">The Estate</a>
+    <a href="rooms.html">The Riad</a>
+    <a href="bungalows.html" class="active">The Bungalows</a>
+    <div class="nav-mobile-dining-wrap"><a href="dining.html">Dining</a><button class="nav-mobile-sub-toggle" aria-expanded="false">&#9662;</button></div>
+    <div class="nav-mobile-submenu"><a href="dining-options.html" class="nav-mobile-sub">Dining Options</a></div>
+    <div class="nav-mobile-events-wrap"><a href="events.html">Events</a><button class="nav-mobile-events-toggle" aria-expanded="false">&#9662;</button></div>
+    <div class="nav-mobile-events-submenu"><a href="weddings.html" class="nav-mobile-sub">Weddings</a><a href="celebrations.html" class="nav-mobile-sub">Celebrations</a><a href="retreats.html" class="nav-mobile-sub">Retreats</a></div>
+    <a href="services.html">Services</a>
+    <a href="about.html">Our Story</a>
+    <a href="contact.html" class="nav-mobile-enquire">Enquire</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <img src="bungalows/b-hero.png" alt="The Bungalows at Riad Mayo">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <span class="section-label">Private Accommodation</span>
+      <h1>The Bungalows</h1>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section class="bung-intro">
+    <div class="bung-intro-inner">
+      <div class="bung-intro-text">
+        <span class="section-label">Set Apart in the Gardens</span>
+        <div class="divider"></div>
+        <h2>Within the Gardens</h2>
+        <p>Set within their own secluded garden enclave, the bungalows are grouped together while remaining individually positioned to preserve privacy and tranquillity. Each opens directly onto its own garden setting, creating a quiet retreat away from the main house.</p>
+        <p>Where the Riad rooms share a house, the bungalows exist at their own pace. Mornings start with birdsong and garden light through the shuttered door. Evenings are quieter, at a gentle remove from the common spaces, with the dark sky of the Ourika Valley above.</p>
+        <p>Each bungalow is distinguished by its own Tadelakt colour palette, carried through both the bedroom and its private en-suite, giving every space a distinct character while remaining cohesive with the estate.</p>
+        <p>Like all accommodation at Riad Mayo, the bungalows are only available as part of a full estate booking and cannot be rented independently.</p>
+      </div>
+      <div class="bung-intro-img">
+        <img src="bungalows/b-bedroom-main.png" alt="Bungalow bedroom interior" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+    </div>
+  </section>
+
+  <!-- BUNGALOW INTERIOR FEATURE -->
+  <div class="bung-feature">
+    <div class="bung-feature-inner">
+      <div class="bung-feature-img">
+        <img src="bungalows/b-bedroom-feature.png" alt="Bungalow with garden view">
+      </div>
+      <div class="bung-feature-content">
+        <div class="bung-feature-content-inner">
+          <span class="section-label" style="color:#c4956a;">The Rooms</span>
+          <div class="divider" style="background:rgba(255,255,255,0.15);"></div>
+          <h2>A Room That Opens<br>to the Garden</h2>
+          <p>Each bungalow is built around a single generous bedroom — with hand-painted Moroccan furniture, warm tadelakt plaster walls and floor-to-ceiling shuttered doors that open directly onto the estate grounds.</p>
+          <p>The private ensuite bathrooms carry the same craftsmanship as those in the Riad: hand-painted ceramic basins, sculpted tadelakt surfaces and Moroccan mirror work throughout.</p>
+          <div class="bung-specs">
+            <div class="bung-spec-row">
+              <span class="bung-spec-label">Size</span>
+              <span class="bung-spec-val">35 m²</span>
+            </div>
+            <div class="bung-spec-row">
+              <span class="bung-spec-label">Capacity</span>
+              <span class="bung-spec-val">Sleeps up to 3</span>
+            </div>
+            <div class="bung-spec-row">
+              <span class="bung-spec-label">Bathroom</span>
+              <span class="bung-spec-val">Private en-suite</span>
+            </div>
+            <div class="bung-spec-row">
+              <span class="bung-spec-label">Access</span>
+              <span class="bung-spec-val">Direct garden access</span>
+            </div>
+          </div>
+          <p class="bung-bedding-note">Each bungalow features a convertible queen bed that can be arranged as one double bed or separated into two individual beds, together with a sofa bed. Bedding configurations can be adapted according to each group's requirements and confirmed at the time of enquiry.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHOTO STRIP -->
+  <div class="bung-strip">
+    <div class="bung-strip-cell"><img src="bungalows/b-bedroom-chimney.jpg" alt="Bungalow bedroom with chimney" style="object-fit:cover;object-position:right center;"></div>
+    <div class="bung-strip-cell"><img src="bungalows/b-ensuite-green.png" alt="Bungalow Tafoukt ensuite"></div>
+    <div class="bung-strip-cell"><img src="bungalows/b-bedroom-warm-2.png" alt="Bungalow bedroom interior"></div>
+  </div>
+
+  <!-- GARDEN SECTION -->
+  <section class="bung-garden">
+    <div class="bung-garden-inner">
+      <div class="bung-garden-img">
+        <img src="bungalows/b-garden-fountain.png" alt="Bungalow estate grounds" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="bung-garden-text">
+        <span class="section-label">The Grounds</span>
+        <div class="divider"></div>
+        <h2>Within the Estate,<br>Apart from the World</h2>
+        <p>Gathered within their own private garden enclave yet individually positioned, the bungalows are arranged so that each one feels entirely separate — from each other and from the main house. The paths between them wind through olive trees, ornamental grasses and flowering plants tended year-round.</p>
+        <p>At the centre of the bungalow garden sits a Moroccan star-shaped fountain surrounded by white lanterns — a focal point for arriving and departing, and a quiet landmark for late evenings outside.</p>
+        <div class="bung-detail-rows">
+          <div class="bung-detail-row">
+            <span class="bung-detail-label">Number</span>
+            <span>Four bungalows</span>
+          </div>
+          <div class="bung-detail-row">
+            <span class="bung-detail-label">Setting</span>
+            <span>Estate gardens</span>
+          </div>
+          <div class="bung-detail-row">
+            <span class="bung-detail-label">Distance from Riad</span>
+            <span>Separate garden wing</span>
+          </div>
+          <div class="bung-detail-row">
+            <span class="bung-detail-label">Booking</span>
+            <span>Full estate only</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVATE NOTE -->
+  <section class="private-note">
+    <span class="section-label" style="color:#c4956a;">Exclusively Private</span>
+    <div class="divider" style="margin: 0 auto 2rem;"></div>
+    <h2>The Entire Property Is Yours</h2>
+    <p>Unlike traditional riads, Riad Mayo does not sell individual rooms or bungalows. Every booking encompasses the complete estate — the Riad, the four bungalows, the pool, gardens, and all facilities — exclusively for your group.</p>
+    <a href="mailto:hello@riadmayo.com" class="btn-solid">Check Availability</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="https://iwzpn3cjaz6ya.ok.kimi.link/logo.png" alt="Riad Mayo">
+        <p>A Privatized and Secured 5 Hectare Estate.<br>45 minutes from the heart of Marrakesh city.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="rooms.html">The Riad</a>
+        <a href="bungalows.html">The Bungalows</a>
+        <a href="dining.html">Dining</a>
+        <div class="nav-events-dropdown">
+        <a href="events.html">Events</a>
+        <div class="nav-events-submenu">
+          <a href="weddings.html">Weddings</a>
+          <a href="celebrations.html">Celebrations</a>
+          <a href="retreats.html">Retreats</a>
+        </div>
+      </div>
+        <a href="about.html">Our Story</a>
+      </div>
+      <div class="footer-col">
+        <h4>Information</h4>
+        <a href="index.html">Amenities</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">Initiatives</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@riadmayo.com">hello@riadmayo.com</a>
+        <a href="https://www.instagram.com/riadmayo/" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:0.45rem;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          @riadmayo
+        </a>
+        <a href="#">Sidi Abdallah Ghiat,<br>Ourika Valley, Morocco</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Riad Mayo &amp; Bungalows. All rights reserved.</span>
+      <span>Ourika Valley, Morocco</span>
+    </div>
+  </footer>
+
+  <script>
+    function setLanguage(code, label) {
+      document.getElementById('currentLang').textContent = label;
+      document.querySelectorAll('#langDropdown button').forEach(function(b){ b.classList.remove('active-lang'); });
+      if (event && event.target) event.target.classList.add('active-lang');
+      var sel = document.getElementById('langSelector');
+      if (sel) sel.classList.remove('open');
+      if (code === 'en') {
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + location.hostname;
+      } else {
+        var v = '/en/' + code;
+        document.cookie = 'googtrans=' + v + '; path=/';
+        document.cookie = 'googtrans=' + v + '; path=/; domain=.' + location.hostname;
+      }
+      location.reload();
+    }
+    document.getElementById('langBtn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.getElementById('langSelector').classList.toggle('open');
+    });
+    document.addEventListener('click', function() {
+      document.getElementById('langSelector').classList.remove('open');
+    });
+  </script>
+
+  <script>
+  (function(){
+    var btn = document.getElementById('navHamburger');
+    var menu = document.getElementById('navMobile');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function(){
+      btn.classList.toggle('open');
+      menu.classList.toggle('open');
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        btn.classList.remove('open');
+        menu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  })();
+  </script>
+
+  <script>
+  (function() {
+    var dropdown    = document.querySelector('.nav-item-dropdown');
+    var submenu     = document.querySelector('.nav-submenu');
+    var mobileToggle  = document.querySelector('.nav-mobile-sub-toggle');
+    var mobileSubmenu = document.querySelector('.nav-mobile-submenu');
+
+    if (submenu)       submenu.style.display     = 'none';
+    if (mobileSubmenu) mobileSubmenu.style.display = 'none';
+
+    if (dropdown && submenu) {
+      dropdown.addEventListener('mouseenter', function() { submenu.style.display = 'block'; });
+      dropdown.addEventListener('mouseleave', function() { submenu.style.display = 'none'; });
+    }
+
+    if (mobileToggle && mobileSubmenu) {
+      mobileToggle.addEventListener('click', function() {
+        var isOpen = mobileSubmenu.style.display === 'block';
+        if (isOpen) {
+          mobileSubmenu.style.display = 'none';
+          this.innerHTML = '&#9662;';
+          this.setAttribute('aria-expanded', 'false');
+        } else {
+          mobileSubmenu.style.display = 'block';
+          this.innerHTML = '&#9652;';
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+    }
+  })();
+  </script>
+<script>
+(function() {
+  // Force-hide all events submenus on load — overrides any cached CSS
+  document.querySelectorAll('.nav-events-submenu').forEach(function(el) {
+    el.style.display = 'none';
+  });
+  // Desktop hover
+  var eventsDropdown = document.querySelector('.nav-links .nav-events-dropdown');
+  var eventsSubmenu  = document.querySelector('.nav-links .nav-events-submenu');
+  if (eventsDropdown && eventsSubmenu) {
+    eventsDropdown.addEventListener('mouseenter', function() {
+      eventsSubmenu.style.display = 'block';
+    });
+    eventsDropdown.addEventListener('mouseleave', function() {
+      eventsSubmenu.style.display = 'none';
+    });
+  }
+  // Mobile accordion
+  var mobileEventsToggle  = document.querySelector('.nav-mobile-events-toggle');
+  var mobileEventsSubmenu = document.querySelector('.nav-mobile-events-submenu');
+  if (mobileEventsToggle && mobileEventsSubmenu) {
+    mobileEventsToggle.addEventListener('click', function() {
+      var isOpen = mobileEventsSubmenu.style.display === 'block';
+      if (isOpen) {
+        mobileEventsSubmenu.style.display = 'none';
+        this.innerHTML = '&#9662;';
+        this.setAttribute('aria-expanded', 'false');
+      } else {
+        mobileEventsSubmenu.style.display = 'block';
+        this.innerHTML = '&#9652;';
+        this.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+  // bfcache fix: force-close all dropdowns when page is restored from cache
+  window.addEventListener('pageshow', function() {
+    document.querySelectorAll('.nav-submenu, .nav-events-submenu').forEach(function(el) {
+      el.style.display = 'none';
+    });
+  });
+})();
+</script>
+</body>
+</html>

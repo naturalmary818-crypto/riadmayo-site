@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — Riad Mayo & Bungalows</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=4">
+  <style>
+
+    /* ── INTRO ── */
+    .svc-intro {
+      padding: 6rem 6%;
+      background: #f8f4ef;
+      text-align: center;
+    }
+    .svc-intro-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .svc-intro .divider { margin: 1rem auto 2rem; }
+    .svc-intro p {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: #5a5652;
+    }
+
+    /* ── SECTION BASE ── */
+    .svc-section {
+      padding: 6rem 6%;
+    }
+    .svc-section.bg-cream  { background: #f8f4ef; }
+    .svc-section.bg-warm   { background: #eee9e0; }
+    .svc-section.bg-dark   { background: #1c1c1a; }
+
+    .svc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.7fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .svc-label-col h2 {
+      margin-top: 0.4rem;
+    }
+    .svc-content-col p {
+      margin-bottom: 1.2rem;
+    }
+    .svc-content-col p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Dark section overrides */
+    .bg-dark .section-label { color: #c4956a; }
+    .bg-dark .divider { background: #c4956a; }
+    .bg-dark h2 { color: white; }
+    .bg-dark p  { color: rgba(255,255,255,0.6); }
+
+    /* ── HAMMAM TREATMENTS ── */
+    .svc-treatments {
+      margin-top: 2.8rem;
+    }
+    .svc-treatment {
+      padding: 1.8rem 0;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .svc-treatment:last-child {
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .svc-treatment-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.3rem;
+    }
+    .svc-treatment-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 300;
+      color: #1c1c1a;
+    }
+    .svc-treatment-price {
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      color: #c4956a;
+    }
+    .svc-treatment-duration {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #b0aba5;
+      margin-bottom: 0.5rem;
+    }
+    .svc-treatment-desc {
+      font-size: 0.88rem;
+      color: #7a7570;
+      line-height: 1.75;
+    }
+    .svc-note {
+      font-size: 0.78rem;
+      color: #b0aba5;
+      font-style: italic;
+      margin-top: 1.8rem;
+    }
+
+    /* ── CLEAN LIST ── */
+    .svc-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 0;
+    }
+    .svc-list li {
+      font-size: 0.9rem;
+      color: #5a5652;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .svc-list li:first-child { border-top: 1px solid rgba(0,0,0,0.06); }
+    .svc-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #c4956a;
+      font-size: 0.7rem;
+      top: 0.65rem;
+    }
+
+    /* Dark section list */
+    .bg-dark .svc-list li {
+      color: rgba(255,255,255,0.5);
+      border-bottom-color: rgba(255,255,255,0.07);
+    }
+    .bg-dark .svc-list li:first-child {
+      border-top-color: rgba(255,255,255,0.07);
+    }
+
+    /* ── ACTIVITIES ── */
+    .svc-activities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      margin-top: 1.5rem;
+    }
+    .svc-activity {
+      font-size: 0.9rem;
+      color: #5a5652;
+      padding: 0.55rem 0;
+      width: 50%;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .svc-activity::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #c4956a;
+      font-size: 0.7rem;
+      top: 0.65rem;
+    }
+    .svc-activity:nth-child(1),
+    .svc-activity:nth-child(2) {
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    /* ── DINING LINK ── */
+    .svc-page-link {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c4956a;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(196,149,106,0.35);
+      padding-bottom: 0.25rem;
+      margin-top: 1.8rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .svc-page-link:hover {
+      color: #1c1c1a;
+      border-color: rgba(28,28,26,0.35);
+    }
+
+    /* ── AVAILABILITY NOTE ── */
+    .svc-avail {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #b0aba5;
+      margin-bottom: 0.4rem;
+    }
+
+    /* ── CTA SECTION ── */
+    .svc-cta {
+      background: #1c1c1a;
+      padding: 7rem 6%;
+      text-align: center;
+    }
+    .svc-cta .section-label { color: #c4956a; }
+    .svc-cta .divider { background: #c4956a; margin: 1rem auto 2.5rem; }
+    .svc-cta h2 {
+      color: white;
+      margin-bottom: 1.5rem;
+    }
+    .svc-cta p {
+      color: rgba(255,255,255,0.55);
+      max-width: 500px;
+      margin: 0 auto 3rem;
+      font-size: 0.95rem;
+      line-height: 1.9;
+    }
+
+    /* ── SECTION SKETCHES ── */
+    .svc-sketch {
+      display: block;
+      width: 100%;
+      max-width: 300px;
+      margin-top: 2.5rem;
+      opacity: 0.82;
+      mix-blend-mode: multiply;
+    }
+    .svc-sketch-portrait {
+      max-width: 220px;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .svc-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 640px) {
+      .svc-section { padding: 3.5rem 5%; }
+      .svc-intro   { padding: 3.5rem 5%; }
+      .svc-cta     { padding: 4rem 5%; }
+      .svc-activity { width: 100%; }
+      .svc-activity:nth-child(2) { border-top: none; }
+    }
+
+  </style>
+  <style>.goog-te-banner-frame{display:none!important;}body{top:0!important;}.goog-te-gadget-icon,.goog-logo-link{display:none!important;}</style>
+  <script>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'ms,fr,de,es,ja',autoDisplay:false},'google_translate_element');}</script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body>
+
+  <div id="google_translate_element" style="display:none;visibility:hidden;height:0;overflow:hidden;position:absolute;"></div>
+
+  <!-- NAV -->
+  <nav class="solid">
+    <div class="nav-logo"><a href="index.html"><img src="https://iwzpn3cjaz6ya.ok.kimi.link/logo-transparent.png" alt="Riad Mayo"></a></div>
+    <div class="nav-links">
+      <a href="index.html">The Estate</a>
+      <a href="rooms.html">The Riad</a>
+      <a href="bungalows.html">The Bungalows</a>
+      <div class="nav-item-dropdown">
+        <a href="dining.html">Dining</a>
+        <div class="nav-submenu">
+          <a href="dining-options.html">Dining Options</a>
+        </div>
+      </div>
+      <div class="nav-events-dropdown">
+        <a href="events.html">Events</a>
+        <div class="nav-events-submenu">
+          <a href="weddings.html">Weddings</a>
+          <a href="celebrations.html">Celebrations</a>
+          <a href="retreats.html">Retreats</a>
+        </div>
+      </div>
+      <a href="services.html" class="active">Services</a>
+      <a href="about.html">Our Story</a>
+    </div>
+    <div class="lang-selector" id="langSelector">
+      <button class="lang-btn" id="langBtn">
+        <span id="currentLang">EN</span> <span class="lang-arrow">▾</span>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <button onclick="setLanguage('en','EN')">English</button>
+        <button onclick="setLanguage('ms','MS')">Bahasa Malaysia</button>
+        <button onclick="setLanguage('fr','FR')">Français</button>
+        <button onclick="setLanguage('de','DE')">Deutsch</button>
+        <button onclick="setLanguage('es','ES')">Español</button>
+        <button onclick="setLanguage('ja','JA')">日本語</button>
+      </div>
+    </div>
+    <a href="contact.html" class="nav-cta">Enquire</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="nav-mobile" id="navMobile">
+    <a href="index.html">The Estate</a>
+    <a href="rooms.html">The Riad</a>
+    <a href="bungalows.html">The Bungalows</a>
+    <div class="nav-mobile-dining-wrap"><a href="dining.html">Dining</a><button class="nav-mobile-sub-toggle" aria-expanded="false">&#9662;</button></div>
+    <div class="nav-mobile-submenu"><a href="dining-options.html" class="nav-mobile-sub">Dining Options</a></div>
+    <div class="nav-mobile-events-wrap"><a href="events.html">Events</a><button class="nav-mobile-events-toggle" aria-expanded="false">&#9662;</button></div>
+    <div class="nav-mobile-events-submenu"><a href="weddings.html" class="nav-mobile-sub">Weddings</a><a href="celebrations.html" class="nav-mobile-sub">Celebrations</a><a href="retreats.html" class="nav-mobile-sub">Retreats</a></div>
+    <a href="services.html" class="active">Services</a>
+    <a href="about.html">Our Story</a>
+    <a href="contact.html" class="nav-mobile-enquire">Enquire</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <img src="/pool-1.png" alt="Riad Mayo Estate">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <span class="section-label">Your Stay at Riad Mayo</span>
+      <h1>Services</h1>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section class="svc-intro">
+    <div class="svc-intro-inner">
+      <span class="section-label">What We Offer</span>
+      <div class="divider"></div>
+      <p>At Riad Mayo, your stay can be tailored around your group. From dining and traditional hammam treatments to private transport, excursions and special arrangements, our team can help organise the details of your stay.</p>
+    </div>
+  </section>
+
+  <!-- HAMMAM & SPA -->
+  <section class="svc-section bg-cream">
+    <div class="svc-grid">
+      <div class="svc-label-col">
+        <span class="section-label">Wellbeing</span>
+        <div class="divider"></div>
+        <h2>Hammam<br>&amp; Spa</h2>
+        <img src="sketch-hammam.png" alt="" class="svc-sketch svc-sketch-portrait" aria-hidden="true">
+      </div>
+      <div class="svc-content-col">
+        <p>Traditional Moroccan hammam treatments and professional massages are available privately at the estate.</p>
+        <span class="svc-avail">Available 10:00 AM – 5:00 PM</span>
+        <div class="svc-treatments">
+          <div class="svc-treatment">
+            <div class="svc-treatment-top">
+              <span class="svc-treatment-name">Sultana Hammam</span>
+              <span class="svc-treatment-price">€50 per person</span>
+            </div>
+            <div class="svc-treatment-duration">60 minutes</div>
+            <div class="svc-treatment-desc">Herbal body scrub, herbal mask and relaxing body massage.</div>
+          </div>
+          <div class="svc-treatment">
+            <div class="svc-treatment-top">
+              <span class="svc-treatment-name">Standard Hammam</span>
+              <span class="svc-treatment-price">€30 per person</span>
+            </div>
+            <div class="svc-treatment-duration">45 minutes</div>
+            <div class="svc-treatment-desc">Traditional black soap and herbal scrub.</div>
+          </div>
+          <div class="svc-treatment">
+            <div class="svc-treatment-top">
+              <span class="svc-treatment-name">Professional Massage</span>
+              <span class="svc-treatment-price">€45 per person</span>
+            </div>
+            <div class="svc-treatment-duration">60 minutes</div>
+            <div class="svc-treatment-desc">A relaxing aromatherapeutic massage.</div>
+          </div>
+        </div>
+        <p class="svc-note">Advance reservation is recommended.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVATE TRANSPORT -->
+  <section class="svc-section bg-warm">
+    <div class="svc-grid">
+      <div class="svc-label-col">
+        <span class="section-label">Getting Around</span>
+        <div class="divider"></div>
+        <h2>Private<br>Transport</h2>
+        <img src="sketch-transport.png" alt="" class="svc-sketch" aria-hidden="true">
+      </div>
+      <div class="svc-content-col">
+        <p>Private transport can be arranged for airport and city transfers, group transportation, and day trips throughout the region.</p>
+        <ul class="svc-list">
+          <li>Marrakech Airport transfers</li>
+          <li>Marrakech city transfers</li>
+          <li>Group transportation</li>
+          <li>Excursions and day trips</li>
+        </ul>
+        <p class="svc-note" style="font-style:normal; color:#9a9590; margin-top:1.5rem;">Available upon request.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXCURSIONS -->
+  <section class="svc-section bg-cream">
+    <div class="svc-grid">
+      <div class="svc-label-col">
+        <span class="section-label">Explore</span>
+        <div class="divider"></div>
+        <h2>Excursions</h2>
+        <img src="sketch-excursion.png" alt="" class="svc-sketch" aria-hidden="true">
+      </div>
+      <div class="svc-content-col">
+        <p>Our team can help arrange experiences around Marrakech and the Atlas region, including camel riding, quad biking, hiking and local cultural experiences.</p>
+        <ul class="svc-list">
+          <li>Agafay Desert</li>
+          <li>Ourika Valley</li>
+          <li>Setti Fatma &amp; the Seven Waterfalls</li>
+          <li>Marrakech Medina &amp; Souks</li>
+        </ul>
+        <p class="svc-note">Please inquire for available experiences, arrangements and pricing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DINING -->
+  <section class="svc-section bg-warm">
+    <div class="svc-grid">
+      <div class="svc-label-col">
+        <span class="section-label">At the Table</span>
+        <div class="divider"></div>
+        <h2>Dining</h2>
+        <img src="sketch-dining.png" alt="" class="svc-sketch" aria-hidden="true">
+      </div>
+      <div class="svc-content-col">
+        <p>Guests can enjoy freshly prepared Moroccan, Italian and Asian-inspired cuisine throughout their stay. Dining can be arranged to suit the rhythm of your group.</p>
+        <ul class="svc-list">
+          <li>À La Carte</li>
+          <li>Breakfast</li>
+          <li>Fixed Menus</li>
+          <li>Half Board</li>
+          <li>Full Board</li>
+          <li>Riad Mayo Feasts</li>
+        </ul>
+        <a href="dining-options.html" class="svc-page-link">Explore Dining Options &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTIVITIES -->
+  <section class="svc-section bg-cream">
+    <div class="svc-grid">
+      <div class="svc-label-col">
+        <span class="section-label">At the Estate</span>
+        <div class="divider"></div>
+        <h2>Activities</h2>
+        <img src="sketch-activity.png" alt="" class="svc-sketch" aria-hidden="true">
+      </div>
+      <div class="svc-content-col">
+        <p>A selection of activities is available across the estate for guests of all ages.</p>
+        <div class="svc-activities">
+          <div class="svc-activity">Swimming pool</div>
+          <div class="svc-activity">Padel / sports court</div>
+          <div class="svc-activity">Basketball</div>
+          <div class="svc-activity">Table tennis</div>
+          <div class="svc-activity">Pool table</div>
+          <div class="svc-activity">Trampoline</div>
+          <div class="svc-activity">Outdoor garden spaces</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIAL ARRANGEMENTS -->
+  <section class="svc-section bg-dark">
+    <div class="svc-grid">
+      <div class="svc-label-col">
+        <span class="section-label">Occasions</span>
+        <div class="divider"></div>
+        <h2>Special<br>Arrangements</h2>
+      </div>
+      <div class="svc-content-col">
+        <p>Our team can assist with arrangements for a range of private occasions and celebrations.</p>
+        <ul class="svc-list">
+          <li>Weddings</li>
+          <li>Private celebrations</li>
+          <li>Retreats</li>
+          <li>Family gatherings</li>
+          <li>Private dinners</li>
+          <li>Entertainment</li>
+          <li>Special occasions</li>
+        </ul>
+        <p class="svc-note" style="color:rgba(255,255,255,0.3);">Subject to prior inquiry and availability.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUEST SERVICES -->
+  <section class="svc-section bg-warm">
+    <div class="svc-grid">
+      <div class="svc-label-col">
+        <span class="section-label">Onsite</span>
+        <div class="divider"></div>
+        <h2>Guest<br>Services</h2>
+      </div>
+      <div class="svc-content-col">
+        <p>Our onsite team can assist with housekeeping, fresh towels and linens, toiletries, dining arrangements, transport, excursions and general guest requests throughout your stay.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="svc-cta">
+    <span class="section-label">Get in Touch</span>
+    <div class="divider"></div>
+    <h2>Plan Your Stay</h2>
+    <p>Looking for a particular service or experience? Speak with our team and we will be happy to assist with arrangements.</p>
+    <a href="mailto:hello@riadmayo.com" class="btn-dark">Inquire With Us &rarr;</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="https://iwzpn3cjaz6ya.ok.kimi.link/logo.png" alt="Riad Mayo">
+        <p>A Privatized and Secured 5 Hectare Estate.<br>45 minutes from the heart of Marrakesh city.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="rooms.html">The Riad</a>
+        <a href="bungalows.html">The Bungalows</a>
+        <a href="dining.html">Dining</a>
+        <div class="nav-events-dropdown">
+        <a href="events.html">Events</a>
+        <div class="nav-events-submenu">
+          <a href="weddings.html">Weddings</a>
+          <a href="celebrations.html">Celebrations</a>
+          <a href="retreats.html">Retreats</a>
+        </div>
+      </div>
+        <a href="about.html">Our Story</a>
+      </div>
+      <div class="footer-col">
+        <h4>Information</h4>
+        <a href="index.html">Amenities</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">Initiatives</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@riadmayo.com">hello@riadmayo.com</a>
+        <a href="https://www.instagram.com/riadmayo/" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:0.45rem;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          @riadmayo
+        </a>
+        <a href="#">Sidi Abdallah Ghiat,<br>Ourika Valley, Morocco</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Riad Mayo &amp; Bungalows. All rights reserved.</span>
+      <span>Ourika Valley, Morocco</span>
+    </div>
+  </footer>
+
+  <script>
+    function setLanguage(code, label) {
+      document.getElementById('currentLang').textContent = label;
+      document.querySelectorAll('#langDropdown button').forEach(function(b){ b.classList.remove('active-lang'); });
+      if (event && event.target) event.target.classList.add('active-lang');
+      var sel = document.getElementById('langSelector');
+      if (sel) sel.classList.remove('open');
+      if (code === 'en') {
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + location.hostname;
+      } else {
+        var v = '/en/' + code;
+        document.cookie = 'googtrans=' + v + '; path=/';
+        document.cookie = 'googtrans=' + v + '; path=/; domain=.' + location.hostname;
+      }
+      location.reload();
+    }
+    document.getElementById('langBtn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.getElementById('langSelector').classList.toggle('open');
+    });
+    document.addEventListener('click', function() {
+      document.getElementById('langSelector').classList.remove('open');
+    });
+  </script>
+
+  <script>
+  (function(){
+    var btn = document.getElementById('navHamburger');
+    var menu = document.getElementById('navMobile');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function(){
+      btn.classList.toggle('open');
+      menu.classList.toggle('open');
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        btn.classList.remove('open');
+        menu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  })();
+  </script>
+
+  <script>
+  (function() {
+    var dropdown    = document.querySelector('.nav-item-dropdown');
+    var submenu     = document.querySelector('.nav-submenu');
+    var mobileToggle  = document.querySelector('.nav-mobile-sub-toggle');
+    var mobileSubmenu = document.querySelector('.nav-mobile-submenu');
+
+    if (submenu)       submenu.style.display     = 'none';
+    if (mobileSubmenu) mobileSubmenu.style.display = 'none';
+
+    if (dropdown && submenu) {
+      dropdown.addEventListener('mouseenter', function() { submenu.style.display = 'block'; });
+      dropdown.addEventListener('mouseleave', function() { submenu.style.display = 'none'; });
+    }
+
+    if (mobileToggle && mobileSubmenu) {
+      mobileToggle.addEventListener('click', function() {
+        var isOpen = mobileSubmenu.style.display === 'block';
+        if (isOpen) {
+          mobileSubmenu.style.display = 'none';
+          this.innerHTML = '&#9662;';
+          this.setAttribute('aria-expanded', 'false');
+        } else {
+          mobileSubmenu.style.display = 'block';
+          this.innerHTML = '&#9652;';
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+    }
+  })();
+  </script>
+
+<script>
+(function() {
+  // Force-hide all events submenus on load — overrides any cached CSS
+  document.querySelectorAll('.nav-events-submenu').forEach(function(el) {
+    el.style.display = 'none';
+  });
+  // Desktop hover
+  var eventsDropdown = document.querySelector('.nav-links .nav-events-dropdown');
+  var eventsSubmenu  = document.querySelector('.nav-links .nav-events-submenu');
+  if (eventsDropdown && eventsSubmenu) {
+    eventsDropdown.addEventListener('mouseenter', function() {
+      eventsSubmenu.style.display = 'block';
+    });
+    eventsDropdown.addEventListener('mouseleave', function() {
+      eventsSubmenu.style.display = 'none';
+    });
+  }
+  // Mobile accordion
+  var mobileEventsToggle  = document.querySelector('.nav-mobile-events-toggle');
+  var mobileEventsSubmenu = document.querySelector('.nav-mobile-events-submenu');
+  if (mobileEventsToggle && mobileEventsSubmenu) {
+    mobileEventsToggle.addEventListener('click', function() {
+      var isOpen = mobileEventsSubmenu.style.display === 'block';
+      if (isOpen) {
+        mobileEventsSubmenu.style.display = 'none';
+        this.innerHTML = '&#9662;';
+        this.setAttribute('aria-expanded', 'false');
+      } else {
+        mobileEventsSubmenu.style.display = 'block';
+        this.innerHTML = '&#9652;';
+        this.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+  // bfcache fix: force-close all dropdowns when page is restored from cache
+  window.addEventListener('pageshow', function() {
+    document.querySelectorAll('.nav-submenu, .nav-events-submenu').forEach(function(el) {
+      el.style.display = 'none';
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dining — Riad Mayo & Bungalows</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=4">
+  <style>
+    /* ── DINING INTRO ── */
+    .dining-intro { padding: 7rem 6%; background: #f8f4ef; }
+    .dining-intro-header { margin-bottom: 2.5rem; }
+    .dining-intro-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: start; }
+    .dining-intro-text p { margin-bottom: 1.2rem; }
+    .dining-intro-img { aspect-ratio: 16/9; overflow: hidden; border-radius: 10px; box-shadow: 0 4px 28px rgba(0,0,0,0.12); }
+    .dining-intro-img video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ── EXPERIENCES ── */
+    .experiences { padding: 7rem 6%; background: #eee9e0; }
+    .exp-head { text-align: center; margin-bottom: 4rem; }
+    .exp-head h2 { margin-bottom: 1rem; }
+    .exp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+    .exp-tile { position: relative; overflow: hidden; }
+    .exp-tile-img { aspect-ratio: 3/4; overflow: hidden; }
+    .exp-tile-img img { transition: transform 0.8s ease; }
+    .exp-tile:hover .exp-tile-img img { transform: scale(1.05); }
+    .exp-tile-body { background: white; padding: 1.8rem 2rem; }
+    .exp-tile-body h3 { margin-bottom: 0.5rem; }
+    .exp-tile-body p { font-size: 0.88rem; }
+
+    /* ── CHEF ── */
+    .chef { background: #1c1c1a; }
+    .chef-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 560px; }
+    .chef-img { overflow: hidden; }
+    .chef-content { display: flex; align-items: center; padding: 5rem 7%; }
+    .chef-content-inner h2 { color: white; margin-bottom: 1.4rem; }
+    .chef-content-inner p { color: rgba(255,255,255,0.65); margin-bottom: 1.2rem; }
+
+    /* ── FOOD GALLERY ── */
+    .food-gallery { display: grid; grid-template-columns: repeat(5, 1fr); height: 400px; gap: 3px; }
+    .food-gallery div { overflow: hidden; }
+    .food-gallery div img { transition: transform 0.7s ease; }
+    .food-gallery div:hover img { transform: scale(1.06); }
+
+    /* ── MENU PHILOSOPHY ── */
+    .philosophy { padding: 7rem 6%; background: #f8f4ef; }
+    .philosophy-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: center; }
+    .philosophy-img { aspect-ratio: 16/10; overflow: hidden; }
+    .philosophy-text h2 { margin-bottom: 1.5rem; }
+    .philosophy-text p { margin-bottom: 1.2rem; }
+    .philosophy-details { margin-top: 2rem; }
+    .detail-row { display: flex; justify-content: space-between; padding: 0.9rem 0; border-bottom: 1px solid rgba(0,0,0,0.08); font-size: 0.88rem; }
+    .detail-row:last-child { border-bottom: none; }
+    .detail-label { color: #9a9590; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.72rem; }
+
+    /* ── DINING OPTION CARDS ── */
+    .dining-cards { padding: 0 6% 6rem; background: #f8f4ef; }
+    .dining-cards-inner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .dining-card {
+      display: block; text-decoration: none;
+      padding: 3rem 2.5rem 4rem;
+      background: white;
+      border-top: 1.5px solid #c4956a;
+      position: relative;
+      transition: background 0.3s;
+    }
+    .dining-card:hover { background: #faf7f3; }
+    .dining-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 300;
+      color: #1c1c1a; margin-bottom: 0.45rem; line-height: 1.15;
+    }
+    .dining-card-phrase {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 1rem;
+      color: #c4956a; display: block; margin-bottom: 1.2rem;
+    }
+    .dining-card p { font-size: 0.83rem; color: #9a9590; line-height: 1.8; margin: 0; }
+    .dining-card::after {
+      content: '→';
+      position: absolute; bottom: 2.2rem; right: 2.2rem;
+      font-size: 0.8rem; color: #c4956a;
+      opacity: 0; transition: opacity 0.2s, transform 0.2s;
+    }
+    .dining-card:hover::after { opacity: 1; transform: translateX(3px); }
+
+    /* ── DINING YOUR WAY CTA ── */
+    .dining-options-cta {
+      display: inline-block; margin-top: 2.5rem;
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: #c4956a; text-decoration: none;
+      border-bottom: 1px solid rgba(196,149,106,0.4); padding-bottom: 0.3rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .dining-options-cta:hover { color: #1c1c1a; border-color: rgba(28,28,26,0.4); }
+
+    @media (max-width: 640px) {
+      .dining-intro { padding: 2.5rem 5%; }
+      .dining-intro-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .dining-intro-img { aspect-ratio: 16/9; }
+      .dining-cards { padding: 0 5% 4rem; }
+      .dining-cards-inner { grid-template-columns: 1fr; gap: 2px; }
+      .dining-card { padding: 2.2rem 1.8rem 3rem; }
+      .experiences { padding: 3rem 5%; }
+      .exp-head { margin-bottom: 2rem; }
+      .exp-grid { grid-template-columns: 1fr; }
+      .chef-inner { grid-template-columns: 1fr; min-height: auto; }
+      .chef-img { aspect-ratio: 4/3; overflow: hidden; }
+      .chef-content { padding: 2.5rem 5%; }
+      .food-gallery { grid-template-columns: repeat(2, 1fr); height: auto; }
+      .food-gallery div { height: 160px; }
+      .philosophy { padding: 2.5rem 5%; }
+      .philosophy-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .philosophy-img { aspect-ratio: 4/3; }
+    }
+  </style>
+  <style>.goog-te-banner-frame{display:none!important;}body{top:0!important;}.goog-te-gadget-icon,.goog-logo-link{display:none!important;}</style>
+  <script>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'ms,fr,de,es,ja',autoDisplay:false},'google_translate_element');}</script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="solid">
+    <div class="nav-logo"><a href="index.html"><img src="https://iwzpn3cjaz6ya.ok.kimi.link/logo-transparent.png" alt="Riad Mayo"></a></div>
+    <div class="nav-links">
+      <a href="index.html">The Estate</a>
+      <a href="rooms.html">The Riad</a>
+      <a href="bungalows.html">The Bungalows</a>
+      <div class="nav-item-dropdown">
+        <a href="dining.html" class="active">Dining</a>
+        <div class="nav-submenu">
+          <a href="dining-options.html">Dining Options</a>
+        </div>
+      </div>
+      <div class="nav-events-dropdown">
+        <a href="events.html">Events</a>
+        <div class="nav-events-submenu">
+          <a href="weddings.html">Weddings</a>
+          <a href="celebrations.html">Celebrations</a>
+          <a href="retreats.html">Retreats</a>
+        </div>
+      </div>
+      <a href="services.html">Services</a>
+      <a href="about.html">Our Story</a>
+    </div>
+    <div class="lang-selector" id="langSelector">
+      <button class="lang-btn" id="langBtn">
+        <span id="currentLang">EN</span> <span class="lang-arrow">▾</span>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <button onclick="setLanguage('en','EN')">English</button>
+        <button onclick="setLanguage('ms','MS')">Bahasa Malaysia</button>
+        <button onclick="setLanguage('fr','FR')">Français</button>
+        <button onclick="setLanguage('de','DE')">Deutsch</button>
+        <button onclick="setLanguage('es','ES')">Español</button>
+        <button onclick="setLanguage('ja','JA')">日本語</button>
+      </div>
+    </div>
+    <a href="contact.html" class="nav-cta">Enquire</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="nav-mobile" id="navMobile">
+    <a href="index.html">The Estate</a>
+    <a href="rooms.html">The Riad</a>
+    <a href="bungalows.html">The Bungalows</a>
+    <div class="nav-mobile-dining-wrap"><a href="dining.html" class="active">Dining</a><button class="nav-mobile-sub-toggle" aria-expanded="false">&#9662;</button></div>
+    <div class="nav-mobile-submenu"><a href="dining-options.html" class="nav-mobile-sub">Dining Options</a></div>
+    <div class="nav-mobile-events-wrap"><a href="events.html">Events</a><button class="nav-mobile-events-toggle" aria-expanded="false">&#9662;</button></div>
+    <div class="nav-mobile-events-submenu"><a href="weddings.html" class="nav-mobile-sub">Weddings</a><a href="celebrations.html" class="nav-mobile-sub">Celebrations</a><a href="retreats.html" class="nav-mobile-sub">Retreats</a></div>
+    <a href="services.html">Services</a>
+    <a href="about.html">Our Story</a>
+    <a href="contact.html" class="nav-mobile-enquire">Enquire</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <img src="/dining-hero.png" alt="Dining at Riad Mayo">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <span class="section-label">Chef Rabia's Kitchen</span>
+      <h1>Dining</h1>
+    </div>
+  </div>
+
+  <!-- DINING INTRO -->
+  <section class="dining-intro">
+    <div class="dining-intro-header">
+      <span class="section-label">The Philosophy</span>
+      <div class="divider"></div>
+      <h2>Food as an Experience</h2>
+    </div>
+    <div class="dining-intro-inner">
+      <div class="dining-intro-text">
+        <p>At Riad Mayo, dining is one of the defining pleasures of a private stay. Our kitchen specialises in traditional <strong><em>Moroccan</em></strong>, <strong><em>Italian</em></strong>, and <strong><em>Asian-inspired</em></strong> cuisine — each style prepared with the generosity and care that runs through everything we do here.</p>
+        <p>Fresh vegetables, herbs, and seasonal ingredients are sourced whenever possible from Riad Mayo's own organic garden. What grows on the estate shapes what arrives at the table — and the difference, guests tell us, is felt with every bite.</p>
+        <p>Dining at Riad Mayo is a flexible and personalised experience. With over 25 years of culinary experience across North Africa and Asia, Chef Rabia and her team tailor every meal around the rhythm, preferences, and style of your group's stay.</p>
+        <a href="mailto:hello@riadmayo.com" class="btn-outline" style="margin-top:0.5rem;">Discuss Your Menu</a>
+      </div>
+      <div class="dining-intro-img">
+        <video autoplay loop muted playsinline>
+          <source src="/hero-video.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- DINING OPTION CARDS -->
+  <section class="dining-cards">
+    <div class="dining-cards-inner">
+      <a href="dining-options.html#a-la-carte" class="dining-card">
+        <h3>À La Carte</h3>
+        <span class="dining-card-phrase">Freedom to choose</span>
+        <p>A freshly prepared menu available daily from 9:00 AM to 11:00 PM — meals, snacks, and beverages served on your schedule.</p>
+      </a>
+      <a href="dining-options.html#fixed-menu" class="dining-card">
+        <h3>Fixed Menu</h3>
+        <span class="dining-card-phrase">Dine together</span>
+        <p>Starter, main course, and dessert — a shared meal for the whole group, with full-board, half-board, and single-meal options available.</p>
+      </a>
+      <a href="dining-options.html#the-feast" class="dining-card">
+        <h3>The Riad Mayo Feast</h3>
+        <span class="dining-card-phrase">Made for sharing</span>
+        <p>A generous spread of platters brought to the table — designed for long, unhurried gatherings with family and close friends.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- DINING OPTIONS LINK -->
+  <div style="text-align:center; padding: 2.5rem 6% 5rem; background: #f8f4ef;">
+    <a href="dining-options.html" class="btn-outline">View All Dining Options</a>
+  </div>
+
+  <!-- DINING EXPERIENCES -->
+  <section class="experiences">
+    <div class="exp-head">
+      <span class="section-label">Dining Settings</span>
+      <h2>Where You'll Dine</h2>
+      <p>From the intimacy of the riad dining room to feasts under the night sky — every setting is part of the memory.</p>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-tile">
+        <div class="exp-tile-img"><img src="/dining-room-main.png" alt="Riad Dining Room"></div>
+        <div class="exp-tile-body">
+          <h3>The Dining Room</h3>
+          <p>Dine inside the Riad's ornate dining room — hand-carved cedar, lantern light, and the warmth of traditional Moroccan hospitality.</p>
+        </div>
+      </div>
+      <div class="exp-tile">
+        <div class="exp-tile-img"><img src="https://iwzpn3cjaz6ya.ok.kimi.link/garden-pergola-dinner.jpg" alt="Pergola Dinner"></div>
+        <div class="exp-tile-body">
+          <h3>The Grapevines</h3>
+          <p>Long-table dinners beneath a candlelit pergola, surrounded by the garden's lush greenery and the sounds of the valley.</p>
+        </div>
+      </div>
+      <div class="exp-tile">
+        <div class="exp-tile-img"><img src="/moroccan-tent-main.png" alt="Moroccan Tent"></div>
+        <div class="exp-tile-body">
+          <h3>The Moroccan Tent</h3>
+          <p>For special evenings, dine in a traditional Moroccan tent surrounded by lanterns, live music, and starlit skies.</p>
+        </div>
+      </div>
+      <div class="exp-tile">
+        <div class="exp-tile-img"><img src="/patio-main.png" alt="The Patio at Riad Mayo"></div>
+        <div class="exp-tile-body">
+          <h3>The Patio</h3>
+          <p>A graceful covered corridor connecting the Riad's main house to the pool and gardens beyond — set with a long communal table, lantern-lit and open to the evening air, it is an intimate space where the warmth of the house flows naturally into the life of the estate.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHEF -->
+  <div class="chef">
+    <div class="chef-inner">
+      <div class="chef-img"><img src="https://iwzpn3cjaz6ya.ok.kimi.link/chef-rabia.png" alt="Chef Rabia"></div>
+      <div class="chef-content">
+        <div class="chef-content-inner">
+          <span class="section-label">Meet the Chef</span>
+          <div class="divider"></div>
+          <h2>Chef Rabia — More Than Our Chef</h2>
+          <p>Rabia came into Naima's life in 1987. What began as a role helping to care for the family slowly became something far deeper — a relationship that has lasted nearly four decades.</p>
+          <p>When Naima later moved to Malaysia, Rabia went with her, helping to raise her children and becoming part of the fabric of their home. She was there through childhoods, family meals, moves between countries and the countless ordinary moments that, over time, turn someone into family. To call her simply an employee would never quite describe it. Rabia is Naima's sister in every way that matters.</p>
+          <p>Her life has taken her from the Ourika Valley and the heat of Marrakech to the busy streets and kitchens of Malaysia, giving her more than 25 years of international culinary experience along the way. Moroccan cooking remained at the heart of what she knew, but years abroad broadened her instincts, techniques and understanding of food.</p>
+          <p>Today, when Rabia cooks at Riad Mayo, she is not preparing dishes as an outside chef brought into the house. She is cooking in the home she helped shape, for a family she helped raise, using the same generosity and care that have defined her place within it for decades.</p>
+          <p>That is what makes a meal prepared by Rabia difficult to reproduce elsewhere. The recipes matter, of course — but behind them is a lifetime of memories, countries, kitchens and a bond with Naima that began long before Riad Mayo ever welcomed its first guest.</p>
+          <a href="mailto:hello@riadmayo.com" class="btn-dark" style="margin-top:0.5rem;">Talk to Us About Your Stay</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOD GALLERY -->
+  <div class="food-gallery">
+    <div><img src="https://iwzpn3cjaz6ya.ok.kimi.link/food-1.jpg" alt="Food"></div>
+    <div><img src="https://iwzpn3cjaz6ya.ok.kimi.link/food-2.jpg" alt="Food"></div>
+    <div><img src="https://iwzpn3cjaz6ya.ok.kimi.link/food-3.jpg" alt="Food"></div>
+    <div><img src="https://iwzpn3cjaz6ya.ok.kimi.link/food-4.jpg" alt="Food"></div>
+    <div><img src="/spaghetti.jpeg" alt="Food"></div>
+  </div>
+
+  <!-- MENU PHILOSOPHY -->
+  <section class="philosophy">
+    <div class="philosophy-inner">
+      <div class="philosophy-img">
+        <img src="https://iwzpn3cjaz6ya.ok.kimi.link/food-1.jpg" alt="Moroccan Food">
+      </div>
+      <div class="philosophy-text">
+        <span class="section-label">Your Table</span>
+        <div class="divider"></div>
+        <h2>Dining, Your Way</h2>
+        <p>From relaxed à la carte meals to full-board stays and generous shared feasts, dining at Riad Mayo can be tailored around your group and the rhythm of your stay.</p>
+        <a href="dining-options.html" class="btn-outline" style="margin-top:2rem; display:inline-block;">Explore Dining Options</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAR -->
+  <div class="cta-bar">
+    <h3>Discuss your dining experience</h3>
+    <a href="mailto:hello@riadmayo.com" class="btn-white">Get in Touch</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="https://iwzpn3cjaz6ya.ok.kimi.link/logo.png" alt="Riad Mayo">
+        <p>A Privatized and Secured 5 Hectare Estate.<br>45 minutes from the heart of Marrakesh city.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="rooms.html">The Riad</a>
+        <a href="bungalows.html">The Bungalows</a>
+        <a href="dining.html">Dining</a>
+        <div class="nav-events-dropdown">
+        <a href="events.html">Events</a>
+        <div class="nav-events-submenu">
+          <a href="weddings.html">Weddings</a>
+          <a href="celebrations.html">Celebrations</a>
+          <a href="retreats.html">Retreats</a>
+        </div>
+      </div>
+        <a href="about.html">Our Story</a>
+      </div>
+      <div class="footer-col">
+        <h4>Information</h4>
+        <a href="index.html">Amenities</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">Initiatives</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@riadmayo.com">hello@riadmayo.com</a>
+        <a href="https://www.instagram.com/riadmayo/" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:0.45rem;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          @riadmayo
+        </a>
+        <a href="#">Sidi Abdallah Ghiat,<br>Ourika Valley, Morocco</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Riad Mayo &amp; Bungalows. All rights reserved.</span>
+      <span>Ourika Valley, Morocco</span>
+    </div>
+  </footer>
+
+  <script>
+    function setLanguage(code, label) {
+      document.getElementById('currentLang').textContent = label;
+      document.querySelectorAll('#langDropdown button').forEach(function(b){ b.classList.remove('active-lang'); });
+      if (event && event.target) event.target.classList.add('active-lang');
+      var sel = document.getElementById('langSelector');
+      if (sel) sel.classList.remove('open');
+      if (code === 'en') {
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + location.hostname;
+      } else {
+        var v = '/en/' + code;
+        document.cookie = 'googtrans=' + v + '; path=/';
+        document.cookie = 'googtrans=' + v + '; path=/; domain=.' + location.hostname;
+      }
+      location.reload();
+    }
+    document.getElementById('langBtn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.getElementById('langSelector').classList.toggle('open');
+    });
+    document.addEventListener('click', function() {
+      document.getElementById('langSelector').classList.remove('open');
+    });
+  </script>
+
+  <script>
+  (function(){
+    var btn = document.getElementById('navHamburger');
+    var menu = document.getElementById('navMobile');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function(){
+      btn.classList.toggle('open');
+      menu.classList.toggle('open');
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        btn.classList.remove('open');
+        menu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  })();
+  </script>
+
+  <script>
+  (function() {
+    var dropdown    = document.querySelector('.nav-item-dropdown');
+    var submenu     = document.querySelector('.nav-submenu');
+    var mobileToggle  = document.querySelector('.nav-mobile-sub-toggle');
+    var mobileSubmenu = document.querySelector('.nav-mobile-submenu');
+
+    if (submenu)       submenu.style.display     = 'none';
+    if (mobileSubmenu) mobileSubmenu.style.display = 'none';
+
+    if (dropdown && submenu) {
+      dropdown.addEventListener('mouseenter', function() { submenu.style.display = 'block'; });
+      dropdown.addEventListener('mouseleave', function() { submenu.style.display = 'none'; });
+    }
+
+    if (mobileToggle && mobileSubmenu) {
+      mobileToggle.addEventListener('click', function() {
+        var isOpen = mobileSubmenu.style.display === 'block';
+        if (isOpen) {
+          mobileSubmenu.style.display = 'none';
+          this.innerHTML = '&#9662;';
+          this.setAttribute('aria-expanded', 'false');
+        } else {
+          mobileSubmenu.style.display = 'block';
+          this.innerHTML = '&#9652;';
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+    }
+  })();
+  </script>
+<script>
+(function() {
+  // Force-hide all events submenus on load — overrides any cached CSS
+  document.querySelectorAll('.nav-events-submenu').forEach(function(el) {
+    el.style.display = 'none';
+  });
+  // Desktop hover
+  var eventsDropdown = document.querySelector('.nav-links .nav-events-dropdown');
+  var eventsSubmenu  = document.querySelector('.nav-links .nav-events-submenu');
+  if (eventsDropdown && eventsSubmenu) {
+    eventsDropdown.addEventListener('mouseenter', function() {
+      eventsSubmenu.style.display = 'block';
+    });
+    eventsDropdown.addEventListener('mouseleave', function() {
+      eventsSubmenu.style.display = 'none';
+    });
+  }
+  // Mobile accordion
+  var mobileEventsToggle  = document.querySelector('.nav-mobile-events-toggle');
+  var mobileEventsSubmenu = document.querySelector('.nav-mobile-events-submenu');
+  if (mobileEventsToggle && mobileEventsSubmenu) {
+    mobileEventsToggle.addEventListener('click', function() {
+      var isOpen = mobileEventsSubmenu.style.display === 'block';
+      if (isOpen) {
+        mobileEventsSubmenu.style.display = 'none';
+        this.innerHTML = '&#9662;';
+        this.setAttribute('aria-expanded', 'false');
+      } else {
+        mobileEventsSubmenu.style.display = 'block';
+        this.innerHTML = '&#9652;';
+        this.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+  // bfcache fix: force-close all dropdowns when page is restored from cache
+  window.addEventListener('pageshow', function() {
+    document.querySelectorAll('.nav-submenu, .nav-events-submenu').forEach(function(el) {
+      el.style.display = 'none';
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dining Options — Riad Mayo & Bungalows</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=4">
+  <style>
+    /* ── PAGE HEADER ── */
+    .dopt-header { padding: 9rem 6% 5.5rem; background: #1c1c1a; }
+    .dopt-back {
+      display: inline-block; margin-bottom: 2.5rem;
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .dopt-back:hover { color: #c4956a; }
+    .dopt-header h1 { color: white; margin: 0.8rem 0 1.5rem; }
+    .dopt-header-desc { color: rgba(255,255,255,0.45); font-size: 0.95rem; max-width: 480px; line-height: 1.85; }
+
+    /* ── SECTION BASE ── */
+    .dopt-section { padding: 7rem 6%; }
+    .dopt-section-inner { max-width: 820px; }
+    .dopt-phrase {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 1.15rem;
+      color: #c4956a; display: block; margin-bottom: 0.7rem;
+    }
+    .dopt-section h2 { margin-bottom: 1.5rem; }
+    .dopt-section p { font-size: 0.92rem; line-height: 1.9; margin-bottom: 1.1rem; }
+
+    /* ── LIGHT SECTION ── */
+    .dopt-light { background: #f8f4ef; }
+    .dopt-light .dopt-section h2 { color: #1c1c1a; }
+    .dopt-light p { color: #6a6660; }
+
+    /* ── WARM SECTION ── */
+    .dopt-warm { background: #eee9e0; }
+    .dopt-warm h2 { color: #1c1c1a; }
+    .dopt-warm p { color: #6a6660; }
+
+    /* ── DARK SECTION ── */
+    .dopt-dark { background: #1c1c1a; }
+    .dopt-dark h2 { color: white; }
+    .dopt-dark p { color: rgba(255,255,255,0.58); }
+    .dopt-dark .dopt-phrase { color: #c4956a; }
+
+    /* ── HOURS TAG ── */
+    .dopt-hours {
+      display: inline-flex; align-items: center; gap: 0.7rem;
+      margin: 1.6rem 0 1.2rem; font-size: 0.72rem;
+      letter-spacing: 0.18em; text-transform: uppercase; color: #9a9590;
+    }
+    .dopt-hours::before { content: ''; display: block; width: 22px; height: 1px; background: #c4956a; flex-shrink: 0; }
+
+    /* ── INCLUDES LINE ── */
+    .dopt-includes {
+      font-size: 0.8rem; letter-spacing: 0.05em; color: #9a9590;
+      margin: 1.2rem 0 0; line-height: 2;
+    }
+    .dopt-dark .dopt-includes { color: rgba(255,255,255,0.3); }
+    .dopt-includes .sep { color: #c4956a; margin: 0 0.5rem; }
+
+    /* ── NOTICE BOX ── */
+    .dopt-notice {
+      margin-top: 2.5rem; padding: 1.8rem 2rem;
+      background: rgba(0,0,0,0.04); border-left: 2px solid rgba(196,149,106,0.3);
+    }
+    .dopt-notice-title {
+      font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #c4956a; display: block; margin-bottom: 0.7rem;
+    }
+    .dopt-notice p { font-size: 0.82rem; color: #9a9590; margin: 0 0 0.5rem; line-height: 1.8; }
+    .dopt-notice p:last-child { margin: 0; }
+
+    /* ── PLAN ROWS ── */
+    .dopt-plan-rows { margin-top: 3rem; border-top: 1px solid rgba(0,0,0,0.08); }
+    .dopt-dark .dopt-plan-rows { border-top-color: rgba(255,255,255,0.08); }
+    .dopt-plan-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 1.4rem 0; border-bottom: 1px solid rgba(0,0,0,0.07); gap: 2rem;
+    }
+    .dopt-dark .dopt-plan-row { border-bottom-color: rgba(255,255,255,0.06); }
+    .dopt-plan-row:last-child { border-bottom: none; }
+    .dopt-plan-info { flex: 1; }
+    .dopt-plan-name { font-size: 0.9rem; color: #1c1c1a; margin-bottom: 0.2rem; }
+    .dopt-dark .dopt-plan-name { color: rgba(255,255,255,0.82); }
+    .dopt-plan-desc { font-size: 0.75rem; color: #9a9590; letter-spacing: 0.03em; }
+    .dopt-dark .dopt-plan-desc { color: rgba(255,255,255,0.28); }
+    .dopt-plan-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.65rem; font-weight: 400;
+      color: #1c1c1a; white-space: nowrap; text-align: right;
+    }
+    .dopt-dark .dopt-plan-price { color: rgba(255,255,255,0.9); }
+    .dopt-plan-price span {
+      display: block; font-family: 'DM Sans', sans-serif;
+      font-size: 0.68rem; color: #9a9590; letter-spacing: 0.08em;
+      margin-top: 0.15rem;
+    }
+    .dopt-dark .dopt-plan-price span { color: rgba(255,255,255,0.28); }
+
+    /* ── DINING NOTES ── */
+    .dopt-notes { padding: 5rem 6% 6rem; background: #f8f4ef; }
+    .dopt-notes-inner { max-width: 680px; }
+    .dopt-notes-label {
+      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #9a9590; display: block; margin-bottom: 1.8rem;
+    }
+    .dopt-notes p { font-size: 0.86rem; color: #9a9590; line-height: 1.95; margin-bottom: 0.8rem; }
+    .dopt-notes p:last-child { margin: 0; }
+
+    @media (max-width: 640px) {
+      .dopt-header { padding: 6rem 5% 3.5rem; }
+      .dopt-section { padding: 3.5rem 5%; }
+      .dopt-plan-row { flex-wrap: wrap; gap: 0.4rem; }
+      .dopt-plan-price { font-size: 1.35rem; }
+      .dopt-notes { padding: 3rem 5% 4rem; }
+    }
+  </style>
+  <style>.goog-te-banner-frame{display:none!important;}body{top:0!important;}.goog-te-gadget-icon,.goog-logo-link{display:none!important;}</style>
+  <script>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'ms,fr,de,es,ja',autoDisplay:false},'google_translate_element');}</script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body>
+  <div id="google_translate_element" style="display:none;visibility:hidden;height:0;overflow:hidden;position:absolute;"></div>
+
+  <!-- NAV -->
+  <nav class="solid">
+    <div class="nav-logo"><a href="index.html"><img src="https://iwzpn3cjaz6ya.ok.kimi.link/logo-transparent.png" alt="Riad Mayo"></a></div>
+    <div class="nav-links">
+      <a href="index.html">The Estate</a>
+      <a href="rooms.html">The Riad</a>
+      <a href="bungalows.html">The Bungalows</a>
+      <div class="nav-item-dropdown">
+        <a href="dining.html" class="active">Dining</a>
+        <div class="nav-submenu">
+          <a href="dining-options.html">Dining Options</a>
+        </div>
+      </div>
+      <div class="nav-events-dropdown">
+        <a href="events.html">Events</a>
+        <div class="nav-events-submenu">
+          <a href="weddings.html">Weddings</a>
+          <a href="celebrations.html">Celebrations</a>
+          <a href="retreats.html">Retreats</a>
+        </div>
+      </div>
+      <a href="services.html">Services</a>
+      <a href="about.html">Our Story</a>
+    </div>
+    <div class="lang-selector" id="langSelector">
+      <button class="lang-btn" id="langBtn">
+        <span id="currentLang">EN</span> <span class="lang-arrow">▾</span>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <button onclick="setLanguage('en','EN')">English</button>
+        <button onclick="setLanguage('ms','MS')">Bahasa Malaysia</button>
+        <button onclick="setLanguage('fr','FR')">Français</button>
+        <button onclick="setLanguage('de','DE')">Deutsch</button>
+        <button onclick="setLanguage('es','ES')">Español</button>
+        <button onclick="setLanguage('ja','JA')">日本語</button>
+      </div>
+    </div>
+    <a href="contact.html" class="nav-cta">Enquire</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="nav-mobile" id="navMobile">
+    <a href="index.html">The Estate</a>
+    <a href="rooms.html">The Riad</a>
+    <a href="bungalows.html">The Bungalows</a>
+    <div class="nav-mobile-dining-wrap"><a href="dining.html" class="active">Dining</a><button class="nav-mobile-sub-toggle" aria-expanded="false">&#9662;</button></div>
+    <div class="nav-mobile-submenu"><a href="dining-options.html" class="nav-mobile-sub">Dining Options</a></div>
+    <div class="nav-mobile-events-wrap"><a href="events.html">Events</a><button class="nav-mobile-events-toggle" aria-expanded="false">&#9662;</button></div>
+    <div class="nav-mobile-events-submenu"><a href="weddings.html" class="nav-mobile-sub">Weddings</a><a href="celebrations.html" class="nav-mobile-sub">Celebrations</a><a href="retreats.html" class="nav-mobile-sub">Retreats</a></div>
+    <a href="services.html">Services</a>
+    <a href="about.html">Our Story</a>
+    <a href="contact.html" class="nav-mobile-enquire">Enquire</a>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <div class="dopt-header">
+    <a href="dining.html" class="dopt-back">← Dining</a>
+    <span class="section-label" style="color:#c4956a;">Chef Rabia's Kitchen</span>
+    <h1>Dining Options</h1>
+    <p class="dopt-header-desc">A guide to how we serve — from leisurely à la carte mornings to full-board stays and long, generous feasts shared at the table.</p>
+  </div>
+
+  <!-- À LA CARTE -->
+  <section class="dopt-section dopt-light" id="a-la-carte">
+    <div class="dopt-section-inner">
+      <span class="section-label">À La Carte</span>
+      <div class="divider"></div>
+      <span class="dopt-phrase">Freedom to choose</span>
+      <h2>On Your Own Terms</h2>
+      <p>Riad Mayo's à la carte menu offers freshly prepared meals, snacks, and desserts at your leisure — alongside a full selection of coffee, Moroccan tea, soft drinks, and other beverages. There is no fixed schedule; you eat when you wish, what you wish, at the pace of your stay.</p>
+
+      <div class="dopt-hours">Available daily · 9:00 AM – 11:00 PM</div>
+
+      <p>Our kitchen prepares each order individually to ensure freshness and quality. For the best experience, we ask that larger groups place their selections a little in advance so we can serve every dish at its finest.</p>
+
+      <div class="dopt-notice">
+        <span class="dopt-notice-title">For larger groups</span>
+        <p>For orders serving more than 5 guests, we kindly ask for approximately 2–4 hours' advance notice, depending on the size and complexity of the order.</p>
+        <p>For groups of 10 or more, we may offer a thoughtfully curated selection of 2–3 dishes to ensure every plate arrives fresh, timely, and at its very best.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIXED MENU -->
+  <section class="dopt-section dopt-warm" id="fixed-menu">
+    <div class="dopt-section-inner">
+      <span class="section-label">Fixed Menu</span>
+      <div class="divider"></div>
+      <span class="dopt-phrase">Dine together</span>
+      <h2>A Shared Table</h2>
+      <p>The Fixed Menu is ideal for groups who would like to sit down together and enjoy the same freshly prepared meal. Chef Rabia selects and prepares each course with care, creating a cohesive dining experience from first bite to last.</p>
+      <p>Each Fixed Menu meal is served as a full three-course occasion:</p>
+
+      <div class="dopt-includes">
+        Starter <span class="sep">·</span> Main Course <span class="sep">·</span> Dessert
+      </div>
+      <div class="dopt-includes">
+        Water, soft drinks, Moroccan tea, regular tea &amp; coffee included upon request
+      </div>
+
+      <div class="dopt-plan-rows">
+        <div class="dopt-plan-row">
+          <div class="dopt-plan-info">
+            <div class="dopt-plan-name">Full Board</div>
+            <div class="dopt-plan-desc">Breakfast, lunch &amp; dinner</div>
+          </div>
+          <div class="dopt-plan-price">€50 <span>per person / day</span></div>
+        </div>
+        <div class="dopt-plan-row">
+          <div class="dopt-plan-info">
+            <div class="dopt-plan-name">Half Board</div>
+            <div class="dopt-plan-desc">Breakfast &amp; either lunch or dinner</div>
+          </div>
+          <div class="dopt-plan-price">€35 <span>per person / day</span></div>
+        </div>
+        <div class="dopt-plan-row">
+          <div class="dopt-plan-info">
+            <div class="dopt-plan-name">Lunch &amp; Dinner</div>
+            <div class="dopt-plan-desc">Both midday and evening meals</div>
+          </div>
+          <div class="dopt-plan-price">€40 <span>per person / day</span></div>
+        </div>
+        <div class="dopt-plan-row">
+          <div class="dopt-plan-info">
+            <div class="dopt-plan-name">Single Fixed Menu Meal</div>
+            <div class="dopt-plan-desc">One meal — starter, main &amp; dessert</div>
+          </div>
+          <div class="dopt-plan-price">€25 <span>per person</span></div>
+        </div>
+        <div class="dopt-plan-row">
+          <div class="dopt-plan-info">
+            <div class="dopt-plan-name">Breakfast Only</div>
+            <div class="dopt-plan-desc">Morning spread in the courtyard or dining room</div>
+          </div>
+          <div class="dopt-plan-price">€10 <span>per person</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE RIAD MAYO FEAST -->
+  <section class="dopt-section dopt-dark" id="the-feast">
+    <div class="dopt-section-inner">
+      <span class="section-label" style="color:#c4956a;">The Riad Mayo Feast</span>
+      <div class="divider" style="background:rgba(255,255,255,0.12);"></div>
+      <span class="dopt-phrase">Made for sharing</span>
+      <h2>Gather Around the Table</h2>
+      <p>The Riad Mayo Feast is our most generous and social way to dine — conceived for long lunches, unhurried shared dinners, family celebrations, and the kind of gathering where the food becomes part of the memory itself.</p>
+      <p>Rather than individual plates, the Feast arrives as a generous spread of platters set at the centre of the table for everyone to share. It is abundance without excess, hospitality in its most natural and open form.</p>
+
+      <div class="dopt-includes">
+        A selection of salads <span class="sep">·</span> Side dishes <span class="sep">·</span> Three main dishes <span class="sep">·</span> Dessert
+      </div>
+      <div class="dopt-includes">
+        Moroccan tea, regular tea, coffee, water &amp; soft drinks included
+      </div>
+
+      <div class="dopt-plan-rows">
+        <div class="dopt-plan-row">
+          <div class="dopt-plan-info">
+            <div class="dopt-plan-name">Feast — Lunch &amp; Dinner</div>
+            <div class="dopt-plan-desc">Both feast sittings included daily</div>
+          </div>
+          <div class="dopt-plan-price">€60 <span>per person / day</span></div>
+        </div>
+        <div class="dopt-plan-row">
+          <div class="dopt-plan-info">
+            <div class="dopt-plan-name">Feast — Lunch or Dinner</div>
+            <div class="dopt-plan-desc">A single shared feast sitting</div>
+          </div>
+          <div class="dopt-plan-price">€35 <span>per person</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DINING NOTES -->
+  <section class="dopt-notes">
+    <div class="dopt-notes-inner">
+      <span class="dopt-notes-label">Dining Notes</span>
+      <p>All meals at Riad Mayo are prepared fresh to order. For larger à la carte orders, we recommend placing selections approximately 3 hours before your preferred meal time, so that every dish can be prepared with the attention it deserves.</p>
+      <p>Dietary requirements, allergies, vegetarian preferences, and special meal requests may be communicated to our team in advance — we are always happy to accommodate and adapt.</p>
+      <p>For any questions about our dining arrangements, please do not hesitate to reach out before your arrival.</p>
+    </div>
+  </section>
+
+  <!-- CTA BAR -->
+  <div class="cta-bar">
+    <h3>Ready to plan your stay?</h3>
+    <a href="mailto:hello@riadmayo.com" class="btn-white">Get in Touch</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="https://iwzpn3cjaz6ya.ok.kimi.link/logo.png" alt="Riad Mayo">
+        <p>A Privatized and Secured 5 Hectare Estate.<br>45 minutes from the heart of Marrakesh city.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="rooms.html">The Riad</a>
+        <a href="bungalows.html">The Bungalows</a>
+        <a href="dining.html">Dining</a>
+        <a href="dining-options.html">Dining Options</a>
+        <div class="nav-events-dropdown">
+        <a href="events.html">Events</a>
+        <div class="nav-events-submenu">
+          <a href="weddings.html">Weddings</a>
+          <a href="celebrations.html">Celebrations</a>
+          <a href="retreats.html">Retreats</a>
+        </div>
+      </div>
+        <a href="about.html">Our Story</a>
+      </div>
+      <div class="footer-col">
+        <h4>Information</h4>
+        <a href="index.html">Amenities</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">Initiatives</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@riadmayo.com">hello@riadmayo.com</a>
+        <a href="https://www.instagram.com/riadmayo/" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:0.45rem;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          @riadmayo
+        </a>
+        <a href="#">Sidi Abdallah Ghiat,<br>Ourika Valley, Morocco</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Riad Mayo &amp; Bungalows. All rights reserved.</span>
+      <span>Ourika Valley, Morocco</span>
+    </div>
+  </footer>
+
+  <script>
+    function setLanguage(code, label) {
+      document.getElementById('currentLang').textContent = label;
+      document.querySelectorAll('#langDropdown button').forEach(function(b){ b.classList.remove('active-lang'); });
+      if (event && event.target) event.target.classList.add('active-lang');
+      var sel = document.getElementById('langSelector');
+      if (sel) sel.classList.remove('open');
+      if (code === 'en') {
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + location.hostname;
+      } else {
+        var v = '/en/' + code;
+        document.cookie = 'googtrans=' + v + '; path=/';
+        document.cookie = 'googtrans=' + v + '; path=/; domain=.' + location.hostname;
+      }
+      location.reload();
+    }
+    document.getElementById('langBtn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.getElementById('langSelector').classList.toggle('open');
+    });
+    document.addEventListener('click', function() {
+      document.getElementById('langSelector').classList.remove('open');
+    });
+  </script>
+
+  <script>
+  (function(){
+    var btn = document.getElementById('navHamburger');
+    var menu = document.getElementById('navMobile');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function(){
+      btn.classList.toggle('open');
+      menu.classList.toggle('open');
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        btn.classList.remove('open');
+        menu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  })();
+  </script>
+
+  <script>
+  (function() {
+    var dropdown    = document.querySelector('.nav-item-dropdown');
+    var submenu     = document.querySelector('.nav-submenu');
+    var mobileToggle  = document.querySelector('.nav-mobile-sub-toggle');
+    var mobileSubmenu = document.querySelector('.nav-mobile-submenu');
+
+    if (submenu)       submenu.style.display     = 'none';
+    if (mobileSubmenu) mobileSubmenu.style.display = 'none';
+
+    if (dropdown && submenu) {
+      dropdown.addEventListener('mouseenter', function() { submenu.style.display = 'block'; });
+      dropdown.addEventListener('mouseleave', function() { submenu.style.display = 'none'; });
+    }
+
+    if (mobileToggle && mobileSubmenu) {
+      mobileToggle.addEventListener('click', function() {
+        var isOpen = mobileSubmenu.style.display === 'block';
+        if (isOpen) {
+          mobileSubmenu.style.display = 'none';
+          this.innerHTML = '&#9662;';
+          this.setAttribute('aria-expanded', 'false');
+        } else {
+          mobileSubmenu.style.display = 'block';
+          this.innerHTML = '&#9652;';
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+    }
+  })();
+  </script>
+<script>
+(function() {
+  // Force-hide all events submenus on load — overrides any cached CSS
+  document.querySelectorAll('.nav-events-submenu').forEach(function(el) {
+    el.style.display = 'none';
+  });
+  // Desktop hover
+  var eventsDropdown = document.querySelector('.nav-links .nav-events-dropdown');
+  var eventsSubmenu  = document.querySelector('.nav-links .nav-events-submenu');
+  if (eventsDropdown && eventsSubmenu) {
+    eventsDropdown.addEventListener('mouseenter', function() {
+      eventsSubmenu.style.display = 'block';
+    });
+    eventsDropdown.addEventListener('mouseleave', function() {
+      eventsSubmenu.style.display = 'none';
+    });
+  }
+  // Mobile accordion
+  var mobileEventsToggle  = document.querySelector('.nav-mobile-events-toggle');
+  var mobileEventsSubmenu = document.querySelector('.nav-mobile-events-submenu');
+  if (mobileEventsToggle && mobileEventsSubmenu) {
+    mobileEventsToggle.addEventListener('click', function() {
+      var isOpen = mobileEventsSubmenu.style.display === 'block';
+      if (isOpen) {
+        mobileEventsSubmenu.style.display = 'none';
+        this.innerHTML = '&#9662;';
+        this.setAttribute('aria-expanded', 'false');
+      } else {
+        mobileEventsSubmenu.style.display = 'block';
+        this.innerHTML = '&#9652;';
+        this.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+  // bfcache fix: force-close all dropdowns when page is restored from cache
+  window.addEventListener('pageshow', function() {
+    document.querySelectorAll('.nav-submenu, .nav-events-submenu').forEach(function(el) {
+      el.style.display = 'none';
+    });
+  });
+})();
+</script>
+</body>
+</html>
